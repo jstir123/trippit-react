@@ -9,7 +9,7 @@ import NavBar from './components/common/NavBar';
 
 const App = () => {
   return (
-    <div className="App" style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
+    <div className="App">
       <BrowserRouter>
         <AuthIsLoaded>
           <NavBar />

@@ -61,17 +61,10 @@ class MapContainer extends Component {
 
   render = () => {
     return (
-      <div className="map-container"
-           style={{
-            display: 'flex',
-            flexFlow: 'column',
-            height: '100%',
-          }}>
-        <div id="map"
-             ref={el => this.mapContainer = el}
-             style={{height: '100%', width: '100%'}}>
-        </div>
-      </div>
+      <>
+        <div id="map" ref={el => this.mapContainer = el} />
+        <div className="map-shadow"></div>
+      </>
     )
   }
 }

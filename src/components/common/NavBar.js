@@ -37,7 +37,7 @@ const NavBar = (props) => {
   return (
     <div className={classes.root}>
       <AppBar position="sticky" className={classes.navbar}>
-        <Toolbar variant="dense">
+        <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
