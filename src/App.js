@@ -5,6 +5,7 @@ import {firestoreConnect} from 'react-redux-firebase';
 import {compose} from 'redux';
 import AuthIsLoaded from './components/common/AuthIsLoaded';
 import Profile from './components/pages/Profile';
+import SignIn from './components/pages/SignIn';
 import NavBar from './components/common/NavBar';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
         <AuthIsLoaded>
           <NavBar />
           <Route exact path='/' component={Profile} />
+          <Route exact path='/login' component={SignIn} />
           <Route exact path='/profile/:uid' component={Profile} />
         </AuthIsLoaded>
       </BrowserRouter>

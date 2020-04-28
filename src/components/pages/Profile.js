@@ -1,9 +1,12 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 import MapContainer from '../common/MapContainer';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 
-const Profile = (props) => {
+const Profile = ({auth}) => {
+
+  if (auth.isEmpty) return <Redirect to='/login' />
+
   return (
     <>
     <h1>Hello</h1>
@@ -12,4 +15,10 @@ const Profile = (props) => {
   )
 }
 
-export default Profile;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth
+  }
+};
+
+export default connect(mapStateToProps)(Profile);

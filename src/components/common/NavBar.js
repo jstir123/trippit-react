@@ -1,5 +1,5 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import {connect} from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
@@ -7,6 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Divider from '@material-ui/core/Divider';
+import Link from '@material-ui/core/Link';
+import {makeStyles} from '@material-ui/core/styles';
+import {signOut} from '../../store/actions/authActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,15 +26,18 @@ const useStyles = makeStyles((theme) => ({
     background: '#ffffff',
     boxShadow: 'none',
   },
-  logoutButton: {
+  navButton: {
     color: '#87ffff',
     borderColor: '#87ffff',
     borderRadius: '25px',
     marginLeft: '15px',
   },
+  link: {
+    color: '#000000',
+  },
 }));
 
-const NavBar = (props) => {
+const NavBar = ({auth, profile, signOut}) => {
   const classes = useStyles();
 
   return (
@@ -44,10 +50,19 @@ const NavBar = (props) => {
           <Typography variant="h5" className={classes.title}>
             Trippit
           </Typography>
-          <Typography variant="body1">
-            Hi, JT
-          </Typography>
-          <Button variant="outlined" className={classes.logoutButton}>Logout</Button>
+          {auth.uid ? (
+            <>
+              <Typography variant="body1">
+                {`Hi, ${profile.firstName}`}
+              </Typography>
+              <Button variant="outlined" className={classes.navButton} onClick={signOut}>Logout</Button>
+            </>
+          ) : (
+            <Link href='/login' variant='body2' underline='none' className={classes.link}>
+              <Button variant="outlined" className={classes.navButton}>Login</Button>
+            </Link>
+          )}
+
         </Toolbar>
       </AppBar>
       <Divider />
@@ -55,4 +70,17 @@ const NavBar = (props) => {
   )
 }
 
-export default NavBar;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => dispatch(signOut())
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
