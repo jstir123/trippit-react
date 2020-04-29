@@ -8,7 +8,10 @@ export const signIn = (credentials) => {
     ).then(() => {
       dispatch({type: 'LOGIN_SUCCESS'});
     }).catch((error) => {
-      dispatch({type: 'LOGIN_ERROR'});
+      dispatch({
+        type: 'LOGIN_ERROR',
+        error
+      });
     });
   }
 }

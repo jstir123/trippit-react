@@ -49,15 +49,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignIn = ({auth, authError, signIn}) => {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [requiredFields, setRequiredFields] = useState(true);
   const classes = useStyles();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signIn({email, password});
-    e.target.reset();
+
+    if (email === '' || password === '') {
+      setRequiredFields(false);
+    } else {
+      setRequiredFields(true);
+      signIn({email, password});
+      e.target.reset();
+    }
   }
 
   if (auth.uid) return <Redirect to='/' />
@@ -100,6 +106,11 @@ const SignIn = ({auth, authError, signIn}) => {
           {authError ? (
             <Typography className={classes.errorText}>
               {authError}
+            </Typography>
+          ) : (null)}
+          {!requiredFields ? (
+            <Typography className={classes.errorText}>
+              Please fill out all fields
             </Typography>
           ) : (null)}
           <Button
