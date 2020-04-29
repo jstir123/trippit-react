@@ -51,19 +51,13 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = ({auth, authError, signIn}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [requiredFields, setRequiredFields] = useState(true);
   const classes = useStyles();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (email === '' || password === '') {
-      setRequiredFields(false);
-    } else {
-      setRequiredFields(true);
-      signIn({email, password});
-      e.target.reset();
-    }
+    signIn({email, password});
+    e.target.reset();
   }
 
   if (auth.uid) return <Redirect to='/' />
@@ -108,18 +102,12 @@ const SignIn = ({auth, authError, signIn}) => {
               {authError}
             </Typography>
           ) : (null)}
-          {!requiredFields ? (
-            <Typography className={classes.errorText}>
-              Please fill out all fields
-            </Typography>
-          ) : (null)}
           <Button
             type='submit'
             fullWidth
             variant='contained'
             color='primary'
-            className={classes.submit}
-          >
+            className={classes.submit}>
             Login
           </Button>
           <Grid container justify='center'>
