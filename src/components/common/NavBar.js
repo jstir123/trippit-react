@@ -27,10 +27,17 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: 'none',
   },
   navButton: {
-    color: '#87ffff',
-    borderColor: '#87ffff',
+    borderColor: theme.palette.primary.main,
     borderRadius: '25px',
     marginLeft: '15px',
+  },
+  navButtonFilled: {
+    color: '#000000',
+    borderColor: theme.palette.primary.main,
+    borderRadius: '25px',
+    marginLeft: '15px',
+    boxShadow: 'none',
+    width: 90,
   },
   link: {
     color: '#000000',
@@ -55,11 +62,11 @@ const NavBar = ({auth, profile, signOut}) => {
               <Typography variant="body1">
                 {`Hi, ${profile.firstName}`}
               </Typography>
-              <Button variant="outlined" className={classes.navButton} onClick={signOut}>Logout</Button>
+              <Button variant="outlined" color='primary' className={classes.navButton} onClick={signOut}>Logout</Button>
             </>
           ) : (
             <Link href='/login' variant='body2' underline='none' className={classes.link}>
-              <Button variant="outlined" className={classes.navButton}>Login</Button>
+              <Button variant="contained" color='primary' className={classes.navButtonFilled}>Login</Button>
             </Link>
           )}
 

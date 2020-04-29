@@ -14,7 +14,7 @@ const authReducer = (state = initState, action) => {
       console.log('Login error');
       return {
         ...state,
-        authError: 'Login failed. Please enter a valid email and password.'
+        authError: action.error.message
       }
     case 'SIGNOUT_SUCCESS':
       console.log('Signout success');

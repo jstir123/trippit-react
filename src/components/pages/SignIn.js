@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: '#87ffff',
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -33,12 +33,11 @@ const useStyles = makeStyles((theme) => ({
     },
     '& .MuiOutlinedInput-root': {
       '&.Mui-focused fieldset': {
-        borderColor: '#87ffff',
+        borderColor: theme.palette.primary.main,
       },
   }},
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: '#87ffff',
     boxShadow: 'none',
   },
   link: {
@@ -107,13 +106,14 @@ const SignIn = ({auth, authError, signIn}) => {
             type='submit'
             fullWidth
             variant='contained'
+            color='primary'
             className={classes.submit}
           >
             Login
           </Button>
           <Grid container justify='center'>
             <Grid item>
-              <Link href='#' variant='body2' className={classes.link}>
+              <Link href='/signup' variant='body2' className={classes.link}>
                 Don't have an account? Sign Up
               </Link>
             </Grid>
@@ -123,8 +123,8 @@ const SignIn = ({auth, authError, signIn}) => {
       <Box mt={8}>
         <Typography variant='body2' color='textSecondary' align='center'>
           {'Copyright © '}
-          <Link color='inherit' href='/'>
-            Trippit.io
+          <Link color='inherit' href='/signup'>
+            Trippit.co
           </Link>{' '}
           {new Date().getFullYear()}
           {'.'}
