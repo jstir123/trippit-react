@@ -19,6 +19,7 @@ const App = () => {
             <Route exact path='/' component={Profile} />
             <Route exact path='/login' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />
+            <Route exact path='/profile/' component={Profile} />
             <Route exact path='/profile/:uid' component={Profile} />
           </AuthIsLoaded>
         </ThemeProvider>

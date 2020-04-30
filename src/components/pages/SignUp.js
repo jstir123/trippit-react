@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -42,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     color: '#000000',
+    textDecoration: 'none',
   },
   errorText: {
     color: 'red',
@@ -182,7 +182,7 @@ const SignUp = ({auth, authError, signUp}) => {
           </Button>
           <Grid container justify="center">
             <Grid item>
-              <Link href="/login" variant="body2" className={classes.link}>
+              <Link to="/login" className={classes.link}>
                 Already have an account? Login
               </Link>
             </Grid>
@@ -192,7 +192,7 @@ const SignUp = ({auth, authError, signUp}) => {
       <Box mt={5}>
         <Typography variant='body2' color='textSecondary' align='center'>
           {'Copyright © '}
-          <Link color='inherit' href='/'>
+          <Link to='/'>
             Trippit.co
           </Link>{' '}
           {new Date().getFullYear()}

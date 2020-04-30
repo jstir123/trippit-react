@@ -37,3 +37,8 @@ export const titleCase = (str) => {
   }
   return str.join(' ');
 }
+
+export const getInitials = (firstName, lastName) => {
+  console.log(firstName, lastName);
+  return `${firstName[0].toUpperCase()}${lastName[0].toUpperCase()}`
+}
