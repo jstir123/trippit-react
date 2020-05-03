@@ -79,8 +79,8 @@ const NavBar = ({auth, profile, signOut}) => {
             </>
           ) : (null)}
         </Toolbar>
+        <Divider />
       </AppBar>
-      <Divider />
     </div>
   )
 }

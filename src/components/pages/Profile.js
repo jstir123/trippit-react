@@ -9,8 +9,8 @@ const Profile = ({auth}) => {
 
   return (
     <>
-    <h1>Hello</h1>
-    <MapContainer/>
+      <h1>Hello</h1>
+      <MapContainer/>
     </>
   )
 }
