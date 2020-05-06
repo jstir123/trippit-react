@@ -60,7 +60,7 @@ const SignIn = ({auth, authError, signIn}) => {
     e.target.reset();
   }
 
-  if (auth.uid) return <Redirect to='/' />
+  if (auth.uid) return <Redirect to={`/profile/${auth.uid}`} />
 
   return (
     <Container component='main' maxWidth='xs'>

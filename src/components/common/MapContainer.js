@@ -63,7 +63,6 @@ class MapContainer extends Component {
     return (
       <>
         <div id="map" ref={el => this.mapContainer = el} />
-        <div className="map-shadow"></div>
       </>
     )
   }

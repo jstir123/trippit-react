@@ -66,7 +66,7 @@ const NavBar = ({auth, profile, signOut}) => {
           <IconButton edge="start" className={classes.menuButton} onClick={handleToggle} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <NavDrawer open={open} handleClose={handleClose} className={classes.navDrawer} auth={auth}/>
+          <NavDrawer open={open} handleClose={handleClose} className={classes.navDrawer} auth={auth} profile={profile}/>
           <Typography variant="h5" className={classes.title}>
             Trippit
           </Typography>

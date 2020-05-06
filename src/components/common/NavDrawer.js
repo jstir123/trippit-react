@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const NavDrawer = ({open, handleClose, auth, signOut}) => {
+const NavDrawer = ({open, handleClose, auth, signOut, profile}) => {
   const classes = useStyles();
 
   return (
@@ -37,12 +37,12 @@ const NavDrawer = ({open, handleClose, auth, signOut}) => {
         <List component='nav'>
           {auth.uid ? (
             <>
-              <Link to='/profile' className={classes.link}>
+              <Link to={`/profile/${auth.uid}`} className={classes.link}>
                 <ListItem button component="nav">
                   <ListItemAvatar>
                     <Avatar
                       alt=''
-                      src='https://firebasestorage.googleapis.com/v0/b/trippit.appspot.com/o/GXIMtCmsgmQShCRVekMKFAWDzZk1%2Fprofile-picture%2FBackup31.jpg?alt=media&token=5993019f-9b80-4757-8d90-b83c3c0f697a'/>
+                      src={profile.profilePicURL}/>
                   </ListItemAvatar>
                   <ListItemText primary='My Trips' />
                 </ListItem>

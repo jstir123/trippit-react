@@ -78,7 +78,7 @@ const SignUp = ({auth, authError, signUp}) => {
     }
   };
 
-  if (auth.uid) return <Redirect to='/' />
+  if (auth.uid) return <Redirect to={`/profile/${auth.uid}`} />
 
   return (
     <Container component="main" maxWidth="xs">

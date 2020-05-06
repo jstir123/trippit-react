@@ -17,10 +17,11 @@ html, body, .App, #root {
   height: 100%;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 900px) {
   #map, .map-shadow {
+    position: static;
     width: 100%;
     height: 40%;
-    top: 64px;
+    /* top: 64px; */
   }
 }
