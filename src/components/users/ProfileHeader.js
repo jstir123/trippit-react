@@ -17,14 +17,13 @@ const useStyles = makeStyles((theme) => ({
   profPic: {
     height: 100,
     width: 100,
+    margin: 'auto',
   },
   profPicGrid: {
     textAlign: 'center',
-    marginLeft: theme.spacing(1),
   },
   nameGrid: {
     textAlign: 'center',
-    paddingLeft: theme.spacing(1),
   },
   bioGrid: {
     marginTop: theme.spacing(2),
@@ -51,11 +50,12 @@ const ProfileHeader = ({user, tripCount}) => {
       <Grid container
             direction='row'
             alignItems='center'
+            spacing={1}
             className={classes.head}>
-        <Grid item xs={3} className={classes.profPicGrid}>
+        <Grid item xs={4} className={classes.profPicGrid}>
           <Avatar src={user.profilePicURL} className={classes.profPic} />
         </Grid>
-        <Grid item xs={6} className={classes.nameGrid}>
+        <Grid item xs={4} className={classes.nameGrid}>
           <Typography variant='h5'>
             {`${user.firstName} ${user.lastName}`}
           </Typography>

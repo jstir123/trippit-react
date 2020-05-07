@@ -6,7 +6,8 @@ class MapContainer extends Component {
 
   componentDidMount = () => {
     let {trips} = this.props;
-    mapboxgl.accessToken = 'pk.eyJ1IjoianN0aXIxMjMiLCJhIjoiY2s2dTExb2loMDUyazNsbXRjeXo4a3dwdSJ9.1VDO7Ypw2AL_eqW41ueANA';
+    mapboxgl.accessToken = 
+      'pk.eyJ1IjoianN0aXIxMjMiLCJhIjoiY2s2dTExb2loMDUyazNsbXRjeXo4a3dwdSJ9.1VDO7Ypw2AL_eqW41ueANA';
 
     this.map = new mapboxgl.Map({
       container: this.mapContainer,

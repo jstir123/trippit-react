@@ -1,12 +1,12 @@
 html, body, .App, #root {
-  height: 100%;
+  height: auto;
   margin: 0px;
 }
 
-.App{
+/* .App{
   display: flex;
   flex-flow: column;
-}
+} */
 
 #map {
   position: fixed;
@@ -14,14 +14,22 @@ html, body, .App, #root {
   right: 0px;
   box-shadow: inset 0px 0px 5px 0px #000;
   width: 60%;
-  height: 100%;
+  height: calc(100% - 64px);
 }
 
 @media (max-width: 900px) {
   #map, .map-shadow {
-    position: static;
+    position: sticky;
+    top: 64px;
+    z-index: 1;
     width: 100%;
-    height: 40%;
+    height: 250px;
     /* top: 64px; */
+  }
+}
+
+@media (max-width: 599px) {
+  #map {
+    top: 48px;
   }
 }

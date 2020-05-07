@@ -7,7 +7,8 @@ import Paper from '@material-ui/core/Paper';
 import MapContainer from '../common/MapContainer';
 import ProfileHeader from '../users/ProfileHeader';
 import SearchBar from '../trips/SearchBar';
-import { makeStyles } from '@material-ui/core/styles';
+import TripList from '../trips/TripList';
+import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
       }
     }
 }));
-
 
 const Profile = ({auth, trips, user}) => {
   const classes = useStyles();
@@ -39,9 +39,13 @@ const Profile = ({auth, trips, user}) => {
 
         {isLoaded(user)
         ? <ProfileHeader user={user[0]} tripCount={tripCount} />
-        : null}
+        : <p>Loading...</p>}
 
         <SearchBar />
+
+        {isLoaded(trips)
+        ? <TripList trips={trips} />
+        : <p>Loading...</p>}
 
       </Paper>
     </>

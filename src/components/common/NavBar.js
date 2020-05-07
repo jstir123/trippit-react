@@ -61,12 +61,24 @@ const NavBar = ({auth, profile, signOut}) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="sticky" className={classes.navbar}>
+      <AppBar position="fixed" className={classes.navbar}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} onClick={handleToggle} color="inherit" aria-label="menu">
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            onClick={handleToggle}
+            color="inherit"
+            aria-label="menu"
+            >
             <MenuIcon />
           </IconButton>
-          <NavDrawer open={open} handleClose={handleClose} className={classes.navDrawer} auth={auth} profile={profile}/>
+          <NavDrawer
+            open={open}
+            handleClose={handleClose}
+            className={classes.navDrawer}
+            auth={auth}
+            profile={profile}
+            />
           <Typography variant="h5" className={classes.title}>
             Trippit
           </Typography>
@@ -75,12 +87,20 @@ const NavBar = ({auth, profile, signOut}) => {
               <Typography variant="body1">
                 {`Hi, ${profile.firstName}`}
               </Typography>
-              <Button variant="outlined" color='primary' className={classes.navButton} onClick={signOut}>Logout</Button>
+              <Button
+                variant="outlined"
+                color='primary'
+                className={classes.navButton}
+                onClick={signOut}
+                >
+                Logout
+              </Button>
             </>
           ) : (null)}
         </Toolbar>
         <Divider />
       </AppBar>
+      <Toolbar />
     </div>
   )
 }
