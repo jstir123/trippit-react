@@ -3,23 +3,47 @@ import {connect} from 'react-redux';
 import {firestoreConnect, isLoaded} from 'react-redux-firebase';
 import {compose} from 'redux';
 import {Redirect} from 'react-router-dom';
+import Paper from '@material-ui/core/Paper';
 import MapContainer from '../common/MapContainer';
 import ProfileHeader from '../users/ProfileHeader';
+import SearchBar from '../trips/SearchBar';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '40%',
+  },
+  '@media (max-width: 900px)': {
+      root: {
+        width: '100%'
+      }
+    }
+}));
+
 
 const Profile = ({auth, trips, user}) => {
+  const classes = useStyles();
 
   if (auth.isEmpty) return <Redirect to='/login' />
 
-  const tripCount = trips && trips.length
+  const tripCount = trips && trips.length;
 
   return (
     <>
       <MapContainer trips={trips} />
 
-      {isLoaded(user)
-      ? <ProfileHeader user={user[0]} tripCount={tripCount} />
-      : null}
+      <Paper className={classes.root} elevation={0}>
 
+        {isLoaded(user)
+        ? <ProfileHeader user={user[0]} tripCount={tripCount} />
+        : null}
+
+        <SearchBar />
+
+      </Paper>
     </>
   )
 }

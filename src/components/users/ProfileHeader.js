@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
 import AddIcon from '@material-ui/icons/Add';
 import {makeStyles} from '@material-ui/core/styles';
 
@@ -12,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin: 0,
     paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-    width: '40%',
+    width: '100%',
+    maxWidth: 450,
   },
   profPic: {
     height: 100,
@@ -35,18 +34,13 @@ const useStyles = makeStyles((theme) => ({
   },
   btnGrid: {
     marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(1),
   },
-  navButton: {
+  addButton: {
     borderColor: theme.palette.primary.main,
     borderRadius: '25px',
     marginLeft: '15px',
   },
-  '@media (max-width: 900px)': {
-    root: {
-      width: '100%'
-    }
-  }
 }));
 
 const ProfileHeader = ({user, tripCount}) => {
@@ -79,12 +73,11 @@ const ProfileHeader = ({user, tripCount}) => {
       </Grid>
       <Grid container justify='center'>
         <Grid item className={classes.btnGrid}>
-          <Button variant="outlined" color='primary' className={classes.navButton} startIcon={<AddIcon/>}>
+          <Button variant="outlined" color='primary' className={classes.addButton} startIcon={<AddIcon/>}>
             Add Trip
           </Button>
         </Grid>
       </Grid>
-      <Divider />
     </Paper>
   )
 };
