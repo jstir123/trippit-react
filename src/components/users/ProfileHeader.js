@@ -63,7 +63,7 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
         <Grid item xs={4} className={classes.profPicGrid}>
           {isLoaded
           ? <Avatar src={user && user.profilePicURL} className={classes.profPic} />
-          : <Skeleton variant="circle" width={100} height={100} />}
+          : <Skeleton variant="circle" animation="wave" width={100} height={100} />}
         </Grid>
         <Grid item xs={4} className={classes.nameGrid}>
           {isLoaded
@@ -79,8 +79,8 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
           )
           : (
             <>
-              <Skeleton variant="text" />
-              <Skeleton variant="text" />
+              <Skeleton variant="text" animation="wave" />
+              <Skeleton variant="text" animation="wave" />
             </>
           )}
         </Grid>
@@ -93,7 +93,7 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
               {user && user.bio}
             </Typography>
           )
-          : <Skeleton variant="rect" height={40} />}
+          : <Skeleton variant="rect" animation="wave" height={40} />}
         </Grid>
       </Grid>
       <Grid container justify='center'>
