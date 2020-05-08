@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import Skeleton from '@material-ui/lab/Skeleton';
 import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -37,12 +38,19 @@ const useStyles = makeStyles((theme) => ({
   },
   addButton: {
     borderColor: theme.palette.primary.main,
+    color: theme.palette.primary.main,
     borderRadius: '25px',
     marginLeft: '15px',
+    '&:hover': {
+      transform: 'scale(1.01)',
+    },
+  },
+  lightText: {
+    fontWeight: 'lighter',
   },
 }));
 
-const ProfileHeader = ({user, tripCount}) => {
+const ProfileHeader = ({user, tripCount, isLoaded}) => {
   const classes = useStyles();
 
   return (
@@ -53,27 +61,44 @@ const ProfileHeader = ({user, tripCount}) => {
             spacing={1}
             className={classes.head}>
         <Grid item xs={4} className={classes.profPicGrid}>
-          <Avatar src={user.profilePicURL} className={classes.profPic} />
+          {isLoaded
+          ? <Avatar src={user && user.profilePicURL} className={classes.profPic} />
+          : <Skeleton variant="circle" width={100} height={100} />}
         </Grid>
         <Grid item xs={4} className={classes.nameGrid}>
-          <Typography variant='h5'>
-            {`${user.firstName} ${user.lastName}`}
-          </Typography>
-          <Typography variant='body2'>
-            {`Trips Logged: ${tripCount}`}
-          </Typography>
+          {isLoaded
+          ? (
+            <>
+              <Typography variant='h5'>
+                {`${user && user.firstName} ${user && user.lastName}`}
+              </Typography>
+              <Typography variant='body2' className={classes.lightText}>
+                {`Trips Logged: ${tripCount}`}
+              </Typography>
+            </>
+          )
+          : (
+            <>
+              <Skeleton variant="text" />
+              <Skeleton variant="text" />
+            </>
+          )}
         </Grid>
       </Grid>
       <Grid container justify='center'>
         <Grid item xs={12} className={classes.bioGrid}>
-          <Typography variant='body2'>
-            {user.bio ? user.bio : null}
-          </Typography>
+          {isLoaded
+          ? (
+            <Typography variant='body2' className={classes.lightText}>
+              {user && user.bio}
+            </Typography>
+          )
+          : <Skeleton variant="rect" height={40} />}
         </Grid>
       </Grid>
       <Grid container justify='center'>
         <Grid item className={classes.btnGrid}>
-          <Button variant="outlined" color='primary' className={classes.addButton} startIcon={<AddIcon/>}>
+          <Button variant='outlined' size='small' className={classes.addButton} startIcon={<AddIcon/>}>
             Add Trip
           </Button>
         </Grid>

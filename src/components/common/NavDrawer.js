@@ -25,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: '#000000',
     textDecoration: 'none',
+  },
+  primaryBackground: {
+    backgroundColor: theme.palette.primary.main,
   }
 }));
 
@@ -50,7 +53,7 @@ const NavDrawer = ({open, handleClose, auth, signOut, profile}) => {
               </Link>
               <ListItem button component="nav" onClick={signOut}>
                 <ListItemAvatar>
-                  <Avatar>
+                  <Avatar className={classes.primaryBackground}>
                     <LockIcon />
                   </Avatar>
                 </ListItemAvatar>

@@ -15,12 +15,26 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2.5),
         marginRight: theme.spacing(1),
         marginLeft: theme.spacing(1),
-        boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14),'
-                    + '0px 1px 3px 0px rgba(0,0,0,0.12), 0px 1px 3px 0px rgba(0,0,0,0.12)',
+        borderRadius: 30,
+        transition: '0.3s',
+        boxShadow: '0px 4px 20px 0 rgba(0,0,0,0.12)',
+        '&:hover': {
+            transform: 'translateY(-3px)',
+            boxShadow: '0px 8px 40px rgba(34, 35, 58, 0.2)',
+        }
     },
     tripPic: {
         height: 140,
-    }
+    },
+    tripContent: {
+        paddingTop: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
+    },
+    dateText: {
+        marginTop: -2,
+        fontWeight: 'lighter',
+        marginBottom: theme.spacing(1),
+    },
 }));
 
 const TripCard = ({trip}) => {
@@ -28,16 +42,16 @@ const TripCard = ({trip}) => {
 
     return (
         <Card className={classes.root}>
+            <CardMedia
+                className={classes.tripPic}
+                image="https://specials-images.forbesimg.com/imageserve/5e086a2f25ab5d0007cf74ec/960x0.jpg?cropX1=1&cropX2=1867&cropY1=0&cropY2=1244"
+            />
             <CardActionArea>
-                <CardMedia
-                    className={classes.tripPic}
-                    image="https://specials-images.forbesimg.com/imageserve/5e086a2f25ab5d0007cf74ec/960x0.jpg?cropX1=1&cropX2=1867&cropY1=0&cropY2=1244"
-                />
-                <CardContent>
+                <CardContent className={classes.tripContent}>
                     <Typography variant="h5" component="h2">
                         {getTripName(trip)}
                     </Typography>
-                    <Typography gutterBottom variant="caption" component="p">
+                    <Typography gutterBottom variant="caption" component="p" className={classes.dateText}>
                         {moment(trip.startDate.toDate()).format("MMM DD, YYYY")}
                         {' - '}
                         {moment(trip.endDate.toDate()).format("MMM DD, YYYY")}

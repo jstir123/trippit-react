@@ -14,9 +14,7 @@ import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
-  },
-  nav: {
-    // flexGrow: 1,
+    marginTop: 75,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -28,22 +26,6 @@ const useStyles = makeStyles((theme) => ({
     color: '#000000',
     background: '#ffffff',
     boxShadow: 'none',
-  },
-  navButton: {
-    borderColor: theme.palette.primary.main,
-    borderRadius: '25px',
-    marginLeft: '15px',
-  },
-  navButtonFilled: {
-    color: '#000000',
-    borderColor: theme.palette.primary.main,
-    borderRadius: '25px',
-    marginLeft: '15px',
-    boxShadow: 'none',
-    width: 90,
-  },
-  link: {
-    color: '#000000',
   },
 }));
 

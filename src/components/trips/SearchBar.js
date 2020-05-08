@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const SearchBar = (props) => {
+const SearchBar = ({setSearchInput}) => {
     const classes = useStyles();
 
     return (
@@ -32,6 +32,7 @@ const SearchBar = (props) => {
                     label='Search'
                     size='small'
                     fullWidth
+                    onChange={(e) => setSearchInput(e.target.value)}
                     />
             </div>
         </div>
