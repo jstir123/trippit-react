@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '40%',
+    width: '45%',
   },
   '@media (max-width: 900px)': {
       root: {

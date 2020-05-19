@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '15px',
     width: 100,
     transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
-    background: 'linear-gradient(to bottom right, #91F362,#8AE2FF)',
+    background: theme.palette.primary.main, // 'linear-gradient(to bottom right, #91F362,#8AE2FF)',
     boxShadow: 'none',
     '&:hover': {
       transform: 'scale(1.02)',

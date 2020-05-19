@@ -12,19 +12,19 @@ import {getTripName} from '../../utils/utils';
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        // height: 210,
         marginTop: theme.spacing(2.5),
-        marginRight: theme.spacing(1),
-        marginLeft: theme.spacing(1),
-        borderRadius: 30,
+        marginRight: theme.spacing(2.5),
+        marginLeft: theme.spacing(2.5),
+        borderRadius: 20,
         transition: '0.3s',
-        boxShadow: '0px 4px 20px 0 rgba(0,0,0,0.12)',
         '&:hover': {
             transform: 'translateY(-3px)',
-            boxShadow: '0px 8px 40px rgba(34, 35, 58, 0.2)',
+            boxShadow: '0px 8px 40px 0 rgba(34, 35, 58, 0.2)',
         }
     },
     tripPic: {
-        height: 140,
+        height: 100,
     },
     tripContent: {
         paddingTop: theme.spacing(1),
