@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Skeleton from '@material-ui/lab/Skeleton';
 import {makeStyles} from '@material-ui/core/styles';
 
@@ -37,10 +37,10 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
   },
   addButton: {
-    borderColor: theme.palette.primary.main,
-    color: theme.palette.primary.main,
+    color: '#fff',
     borderRadius: '25px',
-    marginLeft: '15px',
+    boxShadow: '0 1px 10px 0 rgba(0,0,0,.12)',
+    width: 120,
     '&:hover': {
       transform: 'scale(1.01)',
     },
@@ -60,12 +60,12 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
             alignItems='center'
             spacing={1}
             className={classes.head}>
-        <Grid item xs={4} className={classes.profPicGrid}>
+        <Grid item xs={12} className={classes.profPicGrid}>
           {isLoaded
           ? <Avatar src={user && user.profilePicURL} className={classes.profPic} />
           : <Skeleton variant="circle" animation="wave" width={100} height={100} />}
         </Grid>
-        <Grid item xs={4} className={classes.nameGrid}>
+        <Grid item xs={12} className={classes.nameGrid}>
           {isLoaded
           ? (
             <>
@@ -98,7 +98,7 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
       </Grid>
       <Grid container justify='center'>
         <Grid item className={classes.btnGrid}>
-          <Button variant='outlined' size='small' className={classes.addButton} startIcon={<AddIcon/>}>
+          <Button variant='contained' color='primary' size='small' className={classes.addButton} startIcon={<AddCircleIcon/>}>
             Add Trip
           </Button>
         </Grid>

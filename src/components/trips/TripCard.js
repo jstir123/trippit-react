@@ -16,11 +16,12 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2.5),
         marginRight: theme.spacing(2.5),
         marginLeft: theme.spacing(2.5),
-        borderRadius: 20,
+        borderRadius: 5,
+        boxShadow: '0 1px 10px 0 rgba(0,0,0,.12)',
         transition: '0.3s',
         '&:hover': {
             transform: 'translateY(-3px)',
-            boxShadow: '0px 8px 40px 0 rgba(34, 35, 58, 0.2)',
+            boxShadow: '0 1px 10px 0 rgba(0,0,0,.30)',
         }
     },
     tripPic: {

@@ -27,23 +27,14 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: 'none',
   },
   navButton: {
-    borderRadius: '25px',
-    marginLeft: '15px',
+    borderRadius: 5,
+    marginLeft: 15,
     width: 100,
     transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
-    background: theme.palette.primary.main, // 'linear-gradient(to bottom right, #91F362,#8AE2FF)',
     boxShadow: 'none',
     '&:hover': {
       transform: 'scale(1.02)',
     },
-  },
-  navButtonFilled: {
-    color: '#000000',
-    borderColor: theme.palette.primary.main,
-    borderRadius: '25px',
-    marginLeft: '15px',
-    boxShadow: 'none',
-    width: 90,
   },
   navDrawer: {
     width: 360,
@@ -96,7 +87,7 @@ const NavBar = ({auth, profile, signOut}) => {
                 : null}
               </Typography>
               <Button
-                variant='contained'
+                variant='outlined'
                 color='primary'
                 className={classes.navButton}
                 onClick={signOut}
