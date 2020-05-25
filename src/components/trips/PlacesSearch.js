@@ -4,7 +4,7 @@ import places from 'places.js';
 
 
 const PlacesSearch = (props) => {
-    const {type, setLocation, setCity, setState, setCountry, setLat, setLng} = props;
+    const {type, setLocation, setCity, setState, setCountry, setCoords} = props;
     const [placesAutocomplete, setPlacesAutocomplete] = useState(null);
 
     useEffect(() => {
@@ -19,6 +19,7 @@ const PlacesSearch = (props) => {
                     language: 'en'
                 })
             );
+            document.querySelector('#location').focus();
         }
     }, [placesAutocomplete, type]);
 
@@ -39,8 +40,7 @@ const PlacesSearch = (props) => {
             setCountry(e.suggestion.type === 'country'
                 ? e.suggestion.name || ''
                 : e.suggestion.country || '');
-            setLat(e.suggestion.latlng.lat || '');
-            setLng(e.suggestion.latlng.lng || '');
+            setCoords(e.suggestion.latlng || '');
         })
     }
 
@@ -51,8 +51,7 @@ const PlacesSearch = (props) => {
             setCity('');
             setState('');
             setCountry('');
-            setLat('');
-            setLng('');
+            setCoords('');
         })
     }
     

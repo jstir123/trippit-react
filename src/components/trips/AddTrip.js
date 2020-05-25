@@ -38,15 +38,14 @@ const AddTrip = ({open, handleClose}) => {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [description, setDescription] = useState('');
-    const [lat, setLat] = useState('');
-    const [lng, setLng] = useState('');
+    const [coords, setCoords] = useState('');
     const [type, setType] = useState('city');
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         let newTrip = {location, city, state, country,
-                       startDate, endDate, description, lat, lng}
+                       startDate, endDate, description, coords}
 
         console.log(newTrip);
         handleClose();
@@ -83,8 +82,7 @@ const AddTrip = ({open, handleClose}) => {
                             setCity={setCity}
                             setState={setState}
                             setCountry={setCountry}
-                            setLat={setLat}
-                            setLng={setLng}
+                            setCoords={setCoords}
                         />
                     </Grid>
                     <MuiPickersUtilsProvider utils={MomentUtils}>
