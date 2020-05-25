@@ -1,6 +1,5 @@
 export const addTrip = (trip) => {
   return (dispatch, getState, {getFirebase, getFirestore}) => {
-    // make async call to database
     const firestore = getFirestore();
     const state = getState();
     console.log(trip);
@@ -10,8 +9,8 @@ export const addTrip = (trip) => {
       city: trip.city,
       state: trip.state,
       country: trip.country,
-      startDate: trip.startDate,
-      endDate: trip.endDate,
+      startDate: new Date(trip.startDate) || null,
+      endDate: new Date(trip.endDate) || null,
       description: trip.description,
       coords: trip.coords ? new firestore.GeoPoint(trip.coords.lat, trip.coords.lng) : false,
       uid: state.firebase.auth.uid,

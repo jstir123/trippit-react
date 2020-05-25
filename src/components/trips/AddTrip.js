@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
@@ -14,6 +15,7 @@ import Grid from '@material-ui/core/Grid';
 import MomentUtils from '@date-io/moment';
 import {MuiPickersUtilsProvider, KeyboardDatePicker} from '@material-ui/pickers';
 import {makeStyles} from '@material-ui/core/styles';
+import {addTrip} from '../../store/actions/tripActions';
 import PlacesSearch from './PlacesSearch';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
       }},
 }));
 
-const AddTrip = ({open, handleClose}) => {
+const AddTrip = ({open, handleClose, addTrip}) => {
     const classes = useStyles();
     const [locationBlank, setLocationBlank] = useState(false);
     const [coordsBlank, setCoordsBlank] = useState(false);
@@ -38,8 +40,8 @@ const AddTrip = ({open, handleClose}) => {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [country, setCountry] = useState('');
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
     const [description, setDescription] = useState('');
     const [coords, setCoords] = useState('');
     const [type, setType] = useState('city');
@@ -63,7 +65,7 @@ const AddTrip = ({open, handleClose}) => {
             setCoordsBlank(false);
         }
 
-        console.log(newTrip);
+        addTrip(newTrip);
         handleClose();
     }
 
@@ -110,7 +112,9 @@ const AddTrip = ({open, handleClose}) => {
                             ? <FormHelperText id='fieldError' error={true}>Please select a location</FormHelperText>
                             : null}
                             {coordsBlank
-                            ? <FormHelperText id='fieldError' error={true}>We couldn't find that location!</FormHelperText>
+                            ? (<FormHelperText id='fieldError' error={true}>
+                                We couldn't find that location!
+                               </FormHelperText>)
                             : null}
                         </Grid>
                         <MuiPickersUtilsProvider utils={MomentUtils}>
@@ -171,4 +175,8 @@ const AddTrip = ({open, handleClose}) => {
   );
 }
 
-export default AddTrip;
+const mapDispatchToProps = (dispatch) => {
+    return {addTrip: (trip) => dispatch(addTrip(trip))}
+};
+
+export default connect(null, mapDispatchToProps)(AddTrip);
