@@ -4,12 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      width: '100%',
-      maxWidth: 450,
+        width: '100%',
+        maxWidth: 500,
       },
     input: {
-        paddingLeft: theme.spacing(4),
-        paddingRight: theme.spacing(4),
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2),
         '& label.Mui-focused': {
             color: '#bdbdbd',
           },
@@ -28,6 +28,7 @@ const SearchBar = ({setSearchInput}) => {
         <div className={classes.root}>
             <div className={classes.input}>
                 <TextField
+                    variant='outlined'
                     id='search'
                     label='Search'
                     size='small'

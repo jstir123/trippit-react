@@ -13,9 +13,9 @@ import {getTripName} from '../../utils/utils';
 const useStyles = makeStyles((theme) => ({
     root: {
         // height: 210,
-        marginTop: theme.spacing(2.5),
-        marginRight: theme.spacing(2.5),
-        marginLeft: theme.spacing(2.5),
+        marginTop: theme.spacing(3),
+        marginRight: theme.spacing(2),
+        marginLeft: theme.spacing(2),
         borderRadius: 5,
         boxShadow: '0 1px 10px 0 rgba(0,0,0,.12)',
         transition: '0.3s',
