@@ -49,22 +49,9 @@ export const deleteTrip = (tripId) => {
   }
 };
 
-export const updateTrip = (tripId, trip) => {
+export const updateTrip = (tripId, updatedFields) => {
   return (dispatch, getState, {getFirestore}) => {
     const firestore = getFirestore()
-    let updatedFields = {}
-
-    if(trip.startDate !== false) {
-      updatedFields['startDate'] = trip.startDate
-    }
-
-    if(trip.endDate !== false) {
-      updatedFields['endDate'] = trip.endDate
-    }
-
-    if (trip.description !== '') {
-      updatedFields['description'] = trip.description
-    }
 
     firestore.collection('trips').doc(tripId).update({
       ...updatedFields,

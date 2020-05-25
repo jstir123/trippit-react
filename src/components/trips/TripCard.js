@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import {getTripName} from '../../utils/utils';
 import RemoveTrip from './RemoveTrip';
+import EditTrip from './EditTrip';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 const TripCard = ({trip}) => {
     const classes = useStyles();
     const [removeOpen, setRemoveOpen] = useState(false);
+    const [editOpen, setEditOpen] = useState(false);
 
     return (
         <Card className={classes.root}>
@@ -65,9 +67,15 @@ const TripCard = ({trip}) => {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="small" color="primary">
+                <Button size="small" color="primary" onClick={() => setEditOpen(true)}>
                     Edit
                 </Button>
+                <EditTrip
+                    trip={trip}
+                    tripName={getTripName(trip)}
+                    editOpen={editOpen}
+                    handleClose={() => setEditOpen(false)}
+                />
                 <Button size="small" color="primary" onClick={() => setRemoveOpen(true)}>
                     Remove
                 </Button>
@@ -75,7 +83,8 @@ const TripCard = ({trip}) => {
                     tripID={trip.id}
                     tripName={getTripName(trip)}
                     removeOpen={removeOpen}
-                    handleClose={() => setRemoveOpen(false)} />
+                    handleClose={() => setRemoveOpen(false)}
+                />
             </CardActions>
         </Card>
     )

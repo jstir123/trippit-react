@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
     '& label.Mui-focused': {
-      color: '#000000',
+      color: '#bdbdbd',
     },
     '& .MuiOutlinedInput-root': {
       '&.Mui-focused fieldset': {
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     color: '#000000',
-    textDecoration: 'none',
+    // textDecoration: 'none',
   },
   errorText: {
     color: 'red',

@@ -19,12 +19,12 @@ const RemoveTrip = ({tripID, tripName, removeOpen, handleClose, deleteTrip}) => 
         <Dialog
             open={removeOpen}
             onClose={handleClose}
-            aria-labelledby={tripID + '-dialog-title'}
-            aria-describedby={tripID + '-dialog-description'}
+            aria-labelledby={tripID + '-remove-dialog-title'}
+            aria-describedby={tripID + '-remove-dialog-description'}
         >
-            <DialogTitle id={tripID + '-dialog-title'}>Remove Trip</DialogTitle>
+            <DialogTitle id={tripID + '-remove-dialog-title'}>Remove Trip</DialogTitle>
             <DialogContent>
-                <DialogContentText id={tripID + '-dialog-description'}>
+                <DialogContentText id={tripID + '-remove-dialog-description'}>
                     Are you sure you want to remove your trip to <b>{tripName}?</b>
                 </DialogContentText>
             </DialogContent>
