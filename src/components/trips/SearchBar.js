@@ -13,9 +13,9 @@ const useStyles = makeStyles((theme) => ({
         '& label.Mui-focused': {
             color: '#bdbdbd',
           },
-          '& .MuiOutlinedInput-root': {
-              '&.Mui-focused fieldset': {
-              borderColor: theme.palette.secondary.light,
+        '& .MuiOutlinedInput-root': {
+            '&.Mui-focused fieldset': {
+                borderColor: theme.palette.secondary.light,
             },
         },
     },

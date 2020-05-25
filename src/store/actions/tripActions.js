@@ -33,7 +33,7 @@ export const addTrip = (trip) => {
 
 export const deleteTrip = (tripId) => {
   return (dispatch, getState, {getFirestore}) => {
-    const firestore = getFirestore()
+    const firestore = getFirestore();
 
     firestore.collection('trips').doc(tripId).delete()
       .then(() => {
@@ -47,7 +47,7 @@ export const deleteTrip = (tripId) => {
         })
       })
   }
-}
+};
 
 export const updateTrip = (tripId, trip) => {
   return (dispatch, getState, {getFirestore}) => {

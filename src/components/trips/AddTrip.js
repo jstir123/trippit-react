@@ -66,6 +66,17 @@ const AddTrip = ({open, handleClose, addTrip}) => {
         }
 
         addTrip(newTrip);
+
+        document.querySelector('#location').value = '';
+        setLocation('');
+        setCity('');
+        setState('');
+        setCountry('');
+        setStartDate(null);
+        setEndDate(null);
+        setDescription('');
+        setCoords('');
+
         handleClose();
     }
 
