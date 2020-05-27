@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import Popover from '@material-ui/core/Popover';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import EditIcon from '@material-ui/icons/Edit';
 import Skeleton from '@material-ui/lab/Skeleton';
@@ -34,10 +33,33 @@ const useStyles = makeStyles((theme) => ({
   },
   nameGrid: {
     textAlign: 'center',
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(0),
+    marginBottom: theme.spacing(-1),
+  },
+  editBtn: {
+    '&:hover span': {
+      visibility: 'visible',
+      opacity: 1,
+    },
+  },
+  editTooltip: {
+    visibility: 'hidden',
+    fontSize: '1rem',
+    width: 100,
+    backgroundColor: '#555',
+    color: '#fff',
+    textAlign: 'center',
+    padding: '5px 0',
+    borderRadius: 5,
+    position: 'absolute',
+    zIndex: 1,
+    bottom: '20%',
+    left: '120%',
+    opacity: 0,
+    transition: 'opacity 0.3s',
   },
   bioGrid: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(3),
     marginBottom: theme.spacing(1),
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
@@ -58,12 +80,6 @@ const useStyles = makeStyles((theme) => ({
   lightText: {
     fontWeight: 'lighter',
   },
-  popover: {
-    pointerEvents: 'none',
-  },
-  paper: {
-    padding: theme.spacing(1),
-  },
   '@media (max-width: 900px)': {
     profPic: {
       height: 100,
@@ -75,17 +91,6 @@ const useStyles = makeStyles((theme) => ({
 const ProfileHeader = ({user, tripCount, isLoaded}) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handlePopoverOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
-  };
-
-  const popOpen = Boolean(anchorEl);
 
   return (
     <Paper className={classes.root} elevation={0}>
@@ -100,39 +105,14 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
               src={user && user.profilePicURL}
               onClick={() => console.log('click')}
               className={classes.profPic}
-              aria-owns={open ? 'mouse-over-popover' : undefined}
-              aria-haspopup='true'
-              onMouseEnter={handlePopoverOpen}
-              onMouseLeave={handlePopoverClose}
             />
           : <Skeleton variant='circle' animation='wave' className={classes.profPic} />}
-          <Popover
-            id='mouse-over-popover'
-            className={classes.popover}
-            classes={{
-              paper: classes.paper,
-            }}
-            open={popOpen}
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'center',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'center',
-            }}
-            onClose={handlePopoverClose}
-            disableRestoreFocus
-          >
-            <Typography>Update Profile Picture</Typography>
-          </Popover>
         </Grid>
         <Grid item xs={12} className={classes.nameGrid}>
           {isLoaded
           ? (
             <>
-              <Grid container alignItems='center'  className={classes.profPicGrid}>
+              <Grid container alignItems='center' className={classes.nameGrid}>
                 <Grid item xs={4}>
                   {null}
                 </Grid>
@@ -142,8 +122,9 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={1}>
-                  <IconButton>
+                  <IconButton className={classes.editBtn}>
                     <EditIcon />
+                    <span className={classes.editTooltip}>Edit Profile</span>
                   </IconButton>
                 </Grid>
               </Grid>
