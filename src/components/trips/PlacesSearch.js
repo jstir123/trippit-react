@@ -13,7 +13,7 @@ const PlacesSearch = (props) => {
                 places({
                     appId: 'pl002EF7Z82A',
                     apiKey: '6671243a892e4c02983983935c7eae17',
-                    container: document.querySelector('#location')
+                    container: document.querySelector('#location'),
                 }).configure({
                     type: type,
                     language: 'en'
