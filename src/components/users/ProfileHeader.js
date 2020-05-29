@@ -10,6 +10,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import Skeleton from '@material-ui/lab/Skeleton';
 import {makeStyles} from '@material-ui/core/styles';
 import AddTrip from '../trips/AddTrip';
+import EditProfile from './EditProfile';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
 const ProfileHeader = ({user, tripCount, isLoaded}) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
 
   return (
     <Paper className={classes.root} elevation={0}>
@@ -122,10 +124,15 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={1}>
-                  <IconButton className={classes.editBtn}>
+                  <IconButton className={classes.editBtn} onClick={() => setEditOpen(true)}>
                     <EditIcon />
                     <span className={classes.editTooltip}>Edit Profile</span>
                   </IconButton>
+                  <EditProfile
+                      user={user}
+                      open={editOpen}
+                      handleClose={() => setEditOpen(false)}
+                  />
                 </Grid>
               </Grid>
               <Typography variant='body2' className={classes.lightText}>

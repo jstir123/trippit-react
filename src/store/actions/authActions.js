@@ -50,22 +50,9 @@ export const signUp = (newUser) => {
   }
 }
 
-export const updateProfile = (uid, input) => {
+export const updateProfile = (uid, updatedFields) => {
   return (dispatch, getState, {getFirestore}) => {
     const firestore = getFirestore();
-    let updatedFields = {}
-
-    if (input.firstName !== '') {
-      updatedFields['firstName'] = input.firstName
-    }
-
-    if (input.lastName !== '') {
-      updatedFields['lastName'] = input.lastName
-    }
-
-    if (input.bio !== '') {
-      updatedFields['bio'] = input.bio
-    }
 
     firestore.collection('users').doc(uid).update({
       ...updatedFields
@@ -81,7 +68,7 @@ export const updateProfile = (uid, input) => {
       })
     })
   }
-}
+};
 
 export const clearBio = (uid) => {
   return (dispatch, getState, {getFirestore}) => {
@@ -100,7 +87,7 @@ export const clearBio = (uid) => {
       })
     })
   }
-}
+};
 
 export const follow = (followerId, followedId) => {
   return (dispatch, getState, {getFirestore}) => {
@@ -122,7 +109,7 @@ export const follow = (followerId, followedId) => {
       })
     })
   }
-}
+};
 
 export const unFollow = (followerId, followedId) => {
   return (dispatch, getState, {getFirestore}) => {
@@ -141,7 +128,7 @@ export const unFollow = (followerId, followedId) => {
       })
     })
   }
-}
+};
 
 export const updateProfilePic = (uid, url) => {
   return (dispatch, getState, {getFirestore}) => {
@@ -162,4 +149,4 @@ export const updateProfilePic = (uid, url) => {
       })
     })
   }
-}
+};

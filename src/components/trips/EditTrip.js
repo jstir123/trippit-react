@@ -113,15 +113,14 @@ const EditTrip = ({trip, tripName, editOpen, handleClose, updateTrip}) => {
                 </form>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose} color="primary" autoFocus>
+                <Button onClick={handleClose} color='primary' autoFocus>
                     Cancel
                 </Button>
-                <Button onClick={handleUpdate} color="primary">
+                <Button onClick={handleUpdate} color='primary'>
                     Update
                 </Button>
             </DialogActions>
         </Dialog>
-    
     )
 };
 
