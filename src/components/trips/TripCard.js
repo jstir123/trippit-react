@@ -57,12 +57,18 @@ const TripCard = ({trip}) => {
                         {getTripName(trip)}
                     </Typography>
                     <Typography gutterBottom variant="caption" component="p" className={classes.dateText}>
-                        {moment(trip.startDate.toDate()).format("MMM DD, YYYY")}
+                        {trip.startDate
+                         ? moment(trip.startDate.toDate()).format("MMM DD, YYYY")
+                         : null}
                         {' - '}
-                        {moment(trip.endDate.toDate()).format("MMM DD, YYYY")}
+                        {trip.endDate
+                         ? moment(trip.endDate.toDate()).format("MMM DD, YYYY")
+                         : null}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        {trip.description}
+                        {trip.description
+                         ? trip.description
+                         : null}
                     </Typography>
                 </CardContent>
             </CardActionArea>
