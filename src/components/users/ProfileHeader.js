@@ -4,7 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import SpeedDial from '@material-ui/lab/SpeedDial';
+import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import EditIcon from '@material-ui/icons/Edit';
 import Skeleton from '@material-ui/lab/Skeleton';
@@ -35,29 +36,16 @@ const useStyles = makeStyles((theme) => ({
   nameGrid: {
     textAlign: 'center',
     marginTop: theme.spacing(0),
-    marginBottom: theme.spacing(-1),
+    marginBottom: theme.spacing(0),
   },
   editBtn: {
-    '&:hover span': {
-      visibility: 'visible',
-      opacity: 1,
+    height: 25,
+    width: 25,
+    '& .MuiSpeedDial-fab': {
+      // boxShadow: 'none',
+      background: '#fff',
+      color: '#bdbdbd',
     },
-  },
-  editTooltip: {
-    visibility: 'hidden',
-    fontSize: '1rem',
-    width: 100,
-    backgroundColor: '#555',
-    color: '#fff',
-    textAlign: 'center',
-    padding: '5px 0',
-    borderRadius: 5,
-    position: 'absolute',
-    zIndex: 1,
-    bottom: '20%',
-    left: '120%',
-    opacity: 0,
-    transition: 'opacity 0.3s',
   },
   bioGrid: {
     marginTop: theme.spacing(3),
@@ -93,6 +81,7 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
+  const [speedDialOpen, setSpeedDialOpen] = useState(false);
 
   return (
     <Paper className={classes.root} elevation={0}>
@@ -124,10 +113,29 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={1}>
-                  <IconButton className={classes.editBtn} onClick={() => setEditOpen(true)}>
+                  <SpeedDial
+                    ariaLabel='Edit Profile'
+                    className={classes.editBtn}
+                    icon={<EditIcon />}
+                    onClose={() => setSpeedDialOpen(false)}
+                    onOpen={() => setSpeedDialOpen(true)}
+                    open={speedDialOpen}
+                    direction='up'
+                  >
+                    <SpeedDialAction
+                      icon={<EditIcon />}
+                      tooltipTitle='Edit Profile Picture'
+                      onClick={() => setSpeedDialOpen(false)}
+                    />
+                    <SpeedDialAction
+                      icon={<EditIcon />}
+                      tooltipTitle='Edit Profile Info'
+                      onClick={() => setEditOpen(true)}
+                    />
+                  </SpeedDial>
+                  {/* <IconButton className={classes.editBtn} onClick={() => setEditOpen(true)}>
                     <EditIcon />
-                    <span className={classes.editTooltip}>Edit Profile</span>
-                  </IconButton>
+                  </IconButton> */}
                   <EditProfile
                       user={user}
                       open={editOpen}
