@@ -70,25 +70,6 @@ export const updateProfile = (uid, updatedFields) => {
   }
 };
 
-export const clearBio = (uid) => {
-  return (dispatch, getState, {getFirestore}) => {
-    const firestore = getFirestore();
-
-    firestore.collection('users').doc(uid).update({
-      bio: ''
-    }).then(() => {
-      dispatch({
-        type: 'CLEAR_BIO'
-      })
-    }).catch((error) => {
-      dispatch({
-        type: 'CLEAR_BIO_ERROR',
-        error: error
-      })
-    })
-  }
-};
-
 export const follow = (followerId, followedId) => {
   return (dispatch, getState, {getFirestore}) => {
     const firestore = getFirestore();

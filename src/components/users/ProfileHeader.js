@@ -12,6 +12,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import {makeStyles} from '@material-ui/core/styles';
 import AddTrip from '../trips/AddTrip';
 import EditProfile from './EditProfile';
+import EditProfPic from './EditProfPic';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,6 +83,7 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
   const [open, setOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [speedDialOpen, setSpeedDialOpen] = useState(false);
+  const [editProfPicOpen, setEditProfPicOpen] = useState(false);
 
   return (
     <Paper className={classes.root} elevation={0}>
@@ -124,22 +126,27 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
                   >
                     <SpeedDialAction
                       icon={<EditIcon />}
-                      tooltipTitle='Edit Profile Picture'
-                      onClick={() => setSpeedDialOpen(false)}
+                      tooltipTitle='Edit Profile Info'
+                      onClick={() => setEditOpen(true)}
                     />
                     <SpeedDialAction
                       icon={<EditIcon />}
-                      tooltipTitle='Edit Profile Info'
-                      onClick={() => setEditOpen(true)}
+                      tooltipTitle='Edit Profile Picture'
+                      onClick={() => setEditProfPicOpen(true)}
                     />
                   </SpeedDial>
                   {/* <IconButton className={classes.editBtn} onClick={() => setEditOpen(true)}>
                     <EditIcon />
                   </IconButton> */}
                   <EditProfile
-                      user={user}
-                      open={editOpen}
-                      handleClose={() => setEditOpen(false)}
+                    user={user}
+                    open={editOpen}
+                    handleClose={() => setEditOpen(false)}
+                  />
+                  <EditProfPic
+                    uid={user.id}
+                    open={editProfPicOpen}
+                    handleClose={() => setEditProfPicOpen(false)}
                   />
                 </Grid>
               </Grid>

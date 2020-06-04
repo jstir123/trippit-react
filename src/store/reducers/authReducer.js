@@ -40,12 +40,6 @@ const authReducer = (state = initState, action) => {
     case 'UPDATE_PROFILE_ERROR':
       console.log('Update profile error', action.error);
       return state;
-    case 'CLEAR_BIO':
-      console.log('Clear bio');
-      return state;
-    case 'CLEAR_BIO_ERROR':
-      console.log('Clear bio error', action.error);
-      return state;
     case 'ADD_FOLLOW':
       console.log('Add follow');
       return state;
