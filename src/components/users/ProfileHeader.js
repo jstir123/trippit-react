@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     height: 25,
     width: 25,
     '& .MuiSpeedDial-fab': {
-      // boxShadow: 'none',
+      boxShadow: 'none',
       background: '#fff',
       color: '#bdbdbd',
     },
