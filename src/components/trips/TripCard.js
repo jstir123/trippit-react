@@ -19,11 +19,12 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(2),
         marginLeft: theme.spacing(2),
         borderRadius: 5,
-        boxShadow: '0 1px 10px 0 rgba(0,0,0,.12)',
+        border: '1px solid rgba(0, 0, 0, 0.12)',
+        boxShadow: 'none',//'0 1px 10px 0 rgba(0,0,0,.12)',
         transition: '0.3s',
         '&:hover': {
             transform: 'translateY(-3px)',
-            boxShadow: '0 1px 10px 0 rgba(0,0,0,.30)',
+            boxShadow: '0 1px 10px 0 rgba(0,0,0,.12)',//'0 1px 10px 0 rgba(0,0,0,.30)',
         },
     },
     tripPic: {

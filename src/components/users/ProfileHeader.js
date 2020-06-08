@@ -25,6 +25,8 @@ const useStyles = makeStyles((theme) => ({
     height: 120,
     width: 120,
     margin: 'auto',
+    border: '1px solid rgba(0, 0, 0, 0.12)',
+    boxShadow: '0 1px 10px 0 rgba(0,0,0,.12)',
     transition: '0.3s',
     '&:hover': {
       transform: 'translateY(-3px)',
@@ -49,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   bioGrid: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(2),
     marginBottom: theme.spacing(1),
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
