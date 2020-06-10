@@ -13,11 +13,20 @@ const useStyles = makeStyles((theme) => ({
         '& label.Mui-focused': {
             color: '#bdbdbd',
           },
-        '& .MuiOutlinedInput-root': {
-            '&.Mui-focused fieldset': {
-                borderColor: theme.palette.secondary.light,
-            },
-        },
+        // '& .MuiOutlinedInput-root': {
+        //     '&.Mui-focused fieldset': {
+        //         borderColor: theme.palette.secondary.light,
+        //     },
+        // },
+    },
+    inputBorder: {
+        // borderColor: 'rgba(0, 0, 0, 0.12)',
+        borderStyle: 'none',
+        borderRadius: 20,
+        boxShadow: '0 1px 10px 1px rgba(0,0,0,.1)',
+    },
+    inputLabel: {
+        color: '#bdbdbd',
     },
   }));
 
@@ -30,10 +39,16 @@ const SearchBar = ({setSearchInput}) => {
                 <TextField
                     variant='outlined'
                     id='search'
-                    label='Search'
+                    placeholder='Search trips...'
                     size='small'
                     fullWidth
                     onChange={(e) => setSearchInput(e.target.value)}
+                    InputLabelProps={{
+                        classes: {root: classes.inputLabel}
+                    }}
+                    InputProps={{
+                        classes: {notchedOutline: classes.inputBorder}
+                    }}
                     />
             </div>
         </div>

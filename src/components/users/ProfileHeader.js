@@ -62,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
   addButton: {
     color: '#fff',
+    marginBottom: theme.spacing(.5),
     borderRadius: '25px',
     boxShadow: '0 1px 10px 0 rgba(0,0,0,.12)',
     width: 120,
