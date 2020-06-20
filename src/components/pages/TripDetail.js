@@ -6,6 +6,7 @@ import {Redirect} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
 import DetailHeader from '../trips/DetailHeader';
 import DetailPicList from '../trips/DetailPicList';
+import Itinerary from '../trips/Itinerary';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -14,13 +15,20 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const TripDetail = ({auth, trip}) => {
+const TripDetail = ({auth, trip, itinerary}) => {
     const classes = useStyles();
+
+    if (auth.isEmpty) return <Redirect to='/login' />
 
     return (
         <div className={classes.root}>
             <DetailHeader trip={trip} isLoaded={isLoaded(trip)} />
             <DetailPicList pics={trip && trip.pictures} isLoaded={isLoaded(trip)} />
+
+            {itinerary && itinerary.length > 0
+             ? <Itinerary itinerary={itinerary} />
+             : null}
+            
         </div>
     )
 };
@@ -28,13 +36,15 @@ const TripDetail = ({auth, trip}) => {
 const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
-        trip: state.firestore.data['trip']
+        trip: state.firestore.data['trip'],
+        itinerary: state.firestore.ordered.itinerary
     }
 };
 
 export default compose(
     firestoreConnect((props) => [
-        {collection: 'trips', doc: props.match.params.id, storeAs: 'trip'}
+        {collection: 'trips', doc: props.match.params.id, storeAs: 'trip'},
+        {collection: 'itinerary', where: [['tripId','==',props.match.params.id]]}
     ]),
     connect(mapStateToProps)
 )(TripDetail);

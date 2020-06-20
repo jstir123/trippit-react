@@ -1,18 +1,18 @@
 export const getTripName = (trip) => {
   let tripName = ''
-  if (trip.city) {
+  if (trip && trip.city) {
     tripName += (trip.city + ', ')
   }
-  if (trip.state && trip.country === 'United States of America') {
+  if (trip && trip.state && trip.country === 'United States of America') {
     tripName += trip.state
   }
-  if (!trip.city && trip.state && trip.country !== 'United States of America') {
+  if (trip && !trip.city && trip.state && trip.country !== 'United States of America') {
     tripName += trip.state + ', '
   }
-  if (trip.country && trip.country !== 'United States of America') {
+  if (trip && trip.country && trip.country !== 'United States of America') {
     tripName += trip.country
   }
-  if (!trip.city && !trip.state && trip.country === 'United States of America') {
+  if (trip && !trip.city && !trip.state && trip.country === 'United States of America') {
     tripName += trip.country
   }
   return tripName
