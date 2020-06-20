@@ -2,6 +2,7 @@ import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import AuthIsLoaded from './components/common/AuthIsLoaded';
 import Profile from './components/pages/Profile';
+import TripDetail from './components/pages/TripDetail';
 import SignIn from './components/pages/SignIn';
 import SignUp from './components/pages/SignUp';
 import NavBar from './components/common/NavBar';
@@ -20,6 +21,7 @@ const App = () => {
             <Route exact path='/login' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/profile/:uid' component={Profile} />
+            <Route exact path='/trip/:id' component={TripDetail} />
           </AuthIsLoaded>
         </ThemeProvider>
       </BrowserRouter>

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 import moment from 'moment';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -39,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'lighter',
         marginBottom: theme.spacing(1),
     },
+    links: {
+        color: theme.palette.text.primary,
+        textDecoration: 'none',
+    },
 }));
 
 const TripCard = ({trip}) => {
@@ -52,27 +57,31 @@ const TripCard = ({trip}) => {
                 className={classes.tripPic}
                 image="https://specials-images.forbesimg.com/imageserve/5e086a2f25ab5d0007cf74ec/960x0.jpg?cropX1=1&cropX2=1867&cropY1=0&cropY2=1244"
             />
-            <CardActionArea>
-                <CardContent className={classes.tripContent}>
-                    <Typography variant="h5" component="h2">
-                        {getTripName(trip)}
-                    </Typography>
-                    <Typography gutterBottom variant="caption" component="p" className={classes.dateText}>
-                        {trip.startDate
-                         ? moment(trip.startDate.toDate()).format("MMM DD, YYYY")
-                         : null}
-                        {' - '}
-                        {trip.endDate
-                         ? moment(trip.endDate.toDate()).format("MMM DD, YYYY")
-                         : null}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {trip.description
-                         ? trip.description
-                         : null}
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
+            <Link to={`/trip/${trip.id}`} className={classes.links}>
+                <CardActionArea>
+                    <CardContent className={classes.tripContent}>
+                        <Typography variant="h5" component="h2">
+                            {getTripName(trip)}
+                        </Typography>
+                        <Typography gutterBottom variant="caption" component="p" className={classes.dateText}>
+                            {trip.startDate
+                             ? moment(trip.startDate.toDate()).format("MMM DD, YYYY")
+                             : null}
+                            {trip.startDate && trip.endDate
+                             ? ' - '
+                             : null}
+                            {trip.endDate
+                             ? moment(trip.endDate.toDate()).format("MMM DD, YYYY")
+                             : null}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            {trip.description
+                            ? trip.description
+                            : null}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+            </Link>
             <CardActions>
                 <Button size="small" color="primary" onClick={() => setEditOpen(true)}>
                     Edit

@@ -10,6 +10,10 @@ const useStyles = makeStyles((theme) => ({
     input: {
         paddingLeft: theme.spacing(2),
         paddingRight: theme.spacing(2),
+        transition: '0.3s',
+        '&:hover': {
+            transform: 'scale(1.01)',
+        },
         '& label.Mui-focused': {
             color: '#bdbdbd',
           },
