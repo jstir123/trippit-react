@@ -5,13 +5,12 @@ import {compose} from 'redux';
 import {Redirect} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
 import DetailHeader from '../trips/DetailHeader';
+import DetailPicList from '../trips/DetailPicList';
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
         paddingTop: theme.spacing(2),
-        paddingRight: theme.spacing(5),
-        paddingLeft: theme.spacing(5),
     },
 }));
 
@@ -21,6 +20,7 @@ const TripDetail = ({auth, trip}) => {
     return (
         <div className={classes.root}>
             <DetailHeader trip={trip} isLoaded={isLoaded(trip)} />
+            <DetailPicList pics={trip && trip.pictures} isLoaded={isLoaded(trip)} />
         </div>
     )
 };

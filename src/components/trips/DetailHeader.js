@@ -8,6 +8,8 @@ import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     header: {
+        marginLeft: theme.spacing(3),
+        marginRight: theme.spacing(3),
     },
     tripName: {
         fontWeight: 'bold',
@@ -61,7 +63,9 @@ const DetailHeader = ({trip, isLoaded}) => {
                  )
                  : <Skeleton variant='text' animation='wave' />}
             </span>
-            <Divider />
+            {trip && trip.pictures && trip.pictures.length > 0
+             ? null
+             : <Divider />}
         </div>
     )
 };
