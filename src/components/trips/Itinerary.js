@@ -22,8 +22,16 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
         marginBottom: theme.spacing(2),
     },
+    panel: {
+        boxShadow: 'none',
+        border: '1px solid rgba(0, 0, 0, 0.12)',
+    },
+    panelSummary: {
+        marginBottom: theme.spacing(-2.5),
+    },
     panelText: {
         marginLeft: theme.spacing(2),
+        fontWeight: theme.typography.fontWeightBold,
     },
 }));
 
@@ -49,17 +57,15 @@ const Itinerary = ({itinerary}) => {
     return (
         <div className={classes.root}>
             <Typography variant='h4' className={classes.header}>Itinerary</Typography>
-            <div className={classes.panel}>
+            <div>
                 {
                     Array.from(usedTypes).map(type => {
                         let itemList = itinerary.filter(item => (
                             item.type === type
                         ));
                         return (
-                            <ExpansionPanel key={type}>
-                                <ExpansionPanelSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                >
+                            <ExpansionPanel expanded={true} key={type} className={classes.panel}>
+                                <ExpansionPanelSummary className={classes.panelSummary} >
                                     {headerOptions[type]['icon']}
                                     <Typography className={classes.panelText}>
                                         {headerOptions[type]['text']}
