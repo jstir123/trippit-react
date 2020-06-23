@@ -22,16 +22,17 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   navbar: {
-    color: '#000000',
-    background: '#ffffff',
-    boxShadow: 'none',
+    color: theme.palette.text.primary,
+    background: theme.palette.background.paper,
+    boxShadow: theme.shadows[0],
   },
   navButton: {
     borderRadius: 5,
     marginLeft: 15,
     width: 100,
-    transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
-    boxShadow: 'none',
+    transition: theme.transitions.easing.easeInOut,
+    transitionDuration: theme.transitions.duration.standard,
+    boxShadow: theme.shadows[0],
     '&:hover': {
       transform: 'scale(1.02)',
     },
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     width: 360,
   },
   link: {
-    color: '#000000',
+    color: theme.palette.text.primary,
   },
 }));
 

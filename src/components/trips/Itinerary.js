@@ -3,7 +3,6 @@ import Typography from '@material-ui/core/Typography';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import HotelIcon from '@material-ui/icons/Hotel';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import LocalBarIcon from '@material-ui/icons/LocalBar';

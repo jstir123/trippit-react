@@ -23,11 +23,11 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   link: {
-    color: '#000000',
+    color: theme.palette.text.primary,
     textDecoration: 'none',
   },
   primaryBackground: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.background.paper,
   }
 }));
 

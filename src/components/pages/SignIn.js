@@ -25,10 +25,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(1),
     '& label.Mui-focused': {
-      color: '#bdbdbd',
+      color: theme.palette.grey[400],
     },
     '& .MuiOutlinedInput-root': {
       '&.Mui-focused fieldset': {
@@ -37,14 +37,13 @@ const useStyles = makeStyles((theme) => ({
   }},
   submit: {
     margin: theme.spacing(3, 0, 2),
-    boxShadow: 'none',
+    boxShadow: theme.shadows[0],
   },
   link: {
-    color: '#000000',
-    // textDecoration: 'none',
+    color: theme.palette.text.primary,
   },
   errorText: {
-    color: 'red',
+    color: theme.palette.error.dark,
   }
 }));
 

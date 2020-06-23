@@ -23,9 +23,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   navbar: {
-    color: '#000000',
-    background: '#ffffff',
-    boxShadow: 'none',
+    color: theme.palette.text.primary,
+    background: theme.palette.background.paper,
+    boxShadow: theme.shadows[0],
   },
 }));
 
