@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import TextField from '@material-ui/core/TextField';
 import places from 'places.js';
 
-
 const PlacesSearch = (props) => {
     const {type, setLocation, setCity, setState, setCountry, setCoords, error} = props;
     const [placesAutocomplete, setPlacesAutocomplete] = useState(null);

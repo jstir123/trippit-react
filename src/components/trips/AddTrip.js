@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         marginTop: theme.spacing(1),
         '& label.Mui-focused': {
-          color: '#bdbdbd',
+          color: theme.palette.grey[400],
         },
         '& .MuiOutlinedInput-root': {
           '&.Mui-focused fieldset': {

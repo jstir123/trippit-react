@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     border: '1px solid rgba(0, 0, 0, 0.12)',
     boxShadow: '0 1px 10px 0 rgba(0,0,0,.12)',
-    transition: '0.3s',
+    transition: theme.transitions.duration.standard,
     '&:hover': {
       transform: 'translateY(-3px)',
       boxShadow: '0 1px 10px 0 rgba(0,0,0,.30)',
@@ -45,9 +45,9 @@ const useStyles = makeStyles((theme) => ({
     height: 25,
     width: 25,
     '& .MuiSpeedDial-fab': {
-      boxShadow: 'none',
-      background: '#fff',
-      color: '#bdbdbd',
+      boxShadow: theme.shadows[0],
+      background: theme.palette.background.paper,
+      color: theme.palette.grey[400],
     },
   },
   bioGrid: {
@@ -61,9 +61,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   addButton: {
-    color: '#fff',
+    color: theme.palette.primary.contrastText,
     marginBottom: theme.spacing(.5),
-    borderRadius: '25px',
+    borderRadius: 25,
     boxShadow: '0 1px 10px 0 rgba(0,0,0,.12)',
     width: 120,
     '&:hover': {
@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   lightText: {
-    fontWeight: 'lighter',
+    fontWeight: theme.typography.fontWeightLight,
   },
   '@media (max-width: 900px)': {
     profPic: {

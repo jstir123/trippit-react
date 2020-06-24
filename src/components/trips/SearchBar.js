@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
             transform: 'scale(1.01)',
         },
         '& label.Mui-focused': {
-            color: '#bdbdbd',
+            color: theme.palette.grey[400],
           },
         // '& .MuiOutlinedInput-root': {
         //     '&.Mui-focused fieldset': {
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: '0 1px 10px 1px rgba(0,0,0,.1)',
     },
     inputLabel: {
-        color: '#bdbdbd',
+        color: theme.palette.grey[400],
     },
   }));
 

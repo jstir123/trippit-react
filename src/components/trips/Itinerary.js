@@ -18,11 +18,11 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(3),
     },
     header: {
-        fontWeight: 'bold',
+        fontWeight: theme.typography.fontWeightBold,
         marginBottom: theme.spacing(2),
     },
     panel: {
-        boxShadow: 'none',
+        boxShadow: theme.shadows[0],
         border: '1px solid rgba(0, 0, 0, 0.12)',
     },
     panelSummary: {

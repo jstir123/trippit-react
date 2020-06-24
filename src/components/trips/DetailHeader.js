@@ -12,14 +12,14 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(3),
     },
     tripName: {
-        fontWeight: 'bold',
+        fontWeight: theme.typography.fontWeightBold,
     },
     dateText: {
-        fontWeight: 'lighter',
+        fontWeight: theme.typography.fontWeightLight,
         marginBottom: theme.spacing(2),
     },
     descText: {
-        fontWeight: 'lighter',
+        fontWeight: theme.typography.fontWeightLight,
         color: theme.palette.text.secondary,
         marginBottom: theme.spacing(3),
     },

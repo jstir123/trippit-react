@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(2),
         borderRadius: 5,
         border: '1px solid rgba(0, 0, 0, 0.12)',
-        boxShadow: 'none',//'0 1px 10px 0 rgba(0,0,0,.12)',
+        boxShadow: theme.shadows[0],//'0 1px 10px 0 rgba(0,0,0,.12)',
         transition: '0.3s',
         '&:hover': {
             transform: 'translateY(-3px)',
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     },
     dateText: {
         marginTop: -2,
-        fontWeight: 'lighter',
+        fontWeight: theme.typography.fontWeightLight,
         marginBottom: theme.spacing(1),
     },
     links: {
