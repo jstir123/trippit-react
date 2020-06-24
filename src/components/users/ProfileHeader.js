@@ -27,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     border: '1px solid rgba(0, 0, 0, 0.12)',
     boxShadow: '0 1px 10px 0 rgba(0,0,0,.12)',
-    transition: theme.transitions.duration.standard,
+    transition: '0.3s',
     '&:hover': {
-      transform: 'translateY(-3px)',
+      transform: 'translateY(-1px)',
       boxShadow: '0 1px 10px 0 rgba(0,0,0,.30)',
     },
   },

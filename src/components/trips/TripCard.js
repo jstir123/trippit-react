@@ -15,7 +15,6 @@ import EditTrip from './EditTrip';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        // height: 210,
         marginTop: theme.spacing(3),
         marginRight: theme.spacing(2),
         marginLeft: theme.spacing(2),
@@ -24,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: theme.shadows[0],//'0 1px 10px 0 rgba(0,0,0,.12)',
         transition: '0.3s',
         '&:hover': {
-            transform: 'translateY(-3px)',
+            transform: 'translateY(-1px)',
             boxShadow: '0 1px 10px 0 rgba(0,0,0,.12)',//'0 1px 10px 0 rgba(0,0,0,.30)',
         },
     },
@@ -55,7 +54,7 @@ const TripCard = ({trip}) => {
         <Card className={classes.root}>
             <CardMedia
                 className={classes.tripPic}
-                image="https://specials-images.forbesimg.com/imageserve/5e086a2f25ab5d0007cf74ec/960x0.jpg?cropX1=1&cropX2=1867&cropY1=0&cropY2=1244"
+                image={trip.pictures ? trip.pictures[0] : null} //"https://specials-images.forbesimg.com/imageserve/5e086a2f25ab5d0007cf74ec/960x0.jpg?cropX1=1&cropX2=1867&cropY1=0&cropY2=1244"
             />
             <Link to={`/trip/${trip.id}`} className={classes.links}>
                 <CardActionArea>
