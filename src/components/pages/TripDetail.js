@@ -15,18 +15,19 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const TripDetail = ({auth, trip, itinerary}) => {
+const TripDetail = ({auth, trip, itinerary, match}) => {
     const classes = useStyles();
+    const tripId = match.params.id
 
     if (auth.isEmpty) return <Redirect to='/login' />
 
     return (
         <div className={classes.root}>
-            <DetailHeader trip={trip} isLoaded={isLoaded(trip)} />
+            <DetailHeader trip={trip} tripId={tripId} isLoaded={isLoaded(trip)} />
             <DetailPicList pics={trip && trip.pictures} isLoaded={isLoaded(trip)} />
 
             {itinerary && itinerary.length > 0
-             ? <Itinerary itinerary={itinerary} />
+             ? <Itinerary itinerary={itinerary} tripId={tripId} />
              : null}
             
         </div>

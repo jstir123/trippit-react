@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         display: 'flex',
+        alignItems: 'center',
     },
     tripName: {
         fontWeight: theme.typography.fontWeightBold,
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const DetailHeader = ({trip, isLoaded}) => {
+const DetailHeader = ({trip, tripId, isLoaded}) => {
     const classes = useStyles();
     const [editOpen, setEditOpen] = useState(false);
     const [removeOpen, setRemoveOpen] = useState(false);
@@ -53,7 +54,7 @@ const DetailHeader = ({trip, isLoaded}) => {
                             </IconButton>
                         </Tooltip>
                         <EditTrip
-                            trip={trip}
+                            trip={{id: tripId, ...trip}}
                             tripName={getTripName(trip)}
                             editOpen={editOpen}
                             handleClose={() => setEditOpen(false)}
@@ -64,7 +65,7 @@ const DetailHeader = ({trip, isLoaded}) => {
                             </IconButton>
                         </Tooltip>
                         <RemoveTrip
-                            tripID={trip.id}
+                            tripID={tripId}
                             tripName={getTripName(trip)}
                             removeOpen={removeOpen}
                             handleClose={() => setRemoveOpen(false)}

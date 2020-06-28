@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Typography from '@material-ui/core/Typography';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 import HotelIcon from '@material-ui/icons/Hotel';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import LocalBarIcon from '@material-ui/icons/LocalBar';
@@ -10,6 +13,8 @@ import PlaceIcon from '@material-ui/icons/Place';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import GradeIcon from '@material-ui/icons/Grade';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import AddItineraryItem from './AddItineraryItem';
 import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -17,9 +22,15 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(3),
         marginRight: theme.spacing(3),
     },
+    title: {
+        display: 'flex',
+        alignItems: 'center',
+        marginBottom: theme.spacing(1),
+    },
     header: {
         fontWeight: theme.typography.fontWeightBold,
-        marginBottom: theme.spacing(2),
+        marginBottom: theme.spacing(1),
+        marginRight: theme.spacing(1),
     },
     panel: {
         boxShadow: theme.shadows[0],
@@ -34,9 +45,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Itinerary = ({itinerary}) => {
+const Itinerary = ({itinerary, tripId}) => {
     const classes = useStyles();
+    const [addOpen, setAddOpen] = useState(false);
     let usedTypes = new Set();
+
     const headerOptions = {
         lodging: {text: 'Hotels', icon: <HotelIcon />},
         restaurant: {text: 'Restaurants', icon: <RestaurantIcon />},
@@ -55,7 +68,19 @@ const Itinerary = ({itinerary}) => {
 
     return (
         <div className={classes.root}>
-            <Typography variant='h4' className={classes.header}>Itinerary</Typography>
+            <div className={classes.title}>
+                <Typography variant='h4' className={classes.header}>Itinerary</Typography>
+                <Tooltip title='Add Item'>
+                    <IconButton aria-label='add' onClick={() => setAddOpen(true)}>
+                        <AddCircleIcon />
+                    </IconButton>
+                </Tooltip>
+                <AddItineraryItem
+                    tripId={tripId}
+                    addOpen={addOpen}
+                    handleClose={() => setAddOpen(false)}
+                />
+            </div>
             <div>
                 {
                     Array.from(usedTypes).map(type => {
@@ -75,6 +100,9 @@ const Itinerary = ({itinerary}) => {
                                         {itemList.map(item => (
                                             <li key={item.id}>
                                                 <Typography>{item.place}</Typography>
+                                                <IconButton aria-label='delete-item'>
+                                                    <DeleteIcon />
+                                                </IconButton>
                                             </li>
                                         ))}
                                     </ul>
