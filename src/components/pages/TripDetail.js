@@ -26,9 +26,7 @@ const TripDetail = ({auth, trip, itinerary, match}) => {
             <DetailHeader trip={trip} tripId={tripId} isLoaded={isLoaded(trip)} />
             <DetailPicList pics={trip && trip.pictures} isLoaded={isLoaded(trip)} />
 
-            {itinerary && itinerary.length > 0
-             ? <Itinerary itinerary={itinerary} tripId={tripId} />
-             : null}
+            <Itinerary itinerary={itinerary} tripId={tripId} />
             
         </div>
     )

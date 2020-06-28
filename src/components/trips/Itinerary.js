@@ -5,7 +5,6 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
 import HotelIcon from '@material-ui/icons/Hotel';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import LocalBarIcon from '@material-ui/icons/LocalBar';
@@ -15,6 +14,7 @@ import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import GradeIcon from '@material-ui/icons/Grade';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import AddItineraryItem from './AddItineraryItem';
+import ItineraryItem from './ItineraryItem';
 import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -43,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(2),
         fontWeight: theme.typography.fontWeightBold,
     },
+    emptyText: {
+        marginLeft: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+    }
 }));
 
 const Itinerary = ({itinerary, tripId}) => {
@@ -61,59 +65,65 @@ const Itinerary = ({itinerary, tripId}) => {
       }
 
     if (itinerary) {
-        itinerary.forEach(item => {
-            usedTypes.add(item.type)
-        });
-    }
 
-    return (
-        <div className={classes.root}>
-            <div className={classes.title}>
-                <Typography variant='h4' className={classes.header}>Itinerary</Typography>
-                <Tooltip title='Add Item'>
-                    <IconButton aria-label='add' onClick={() => setAddOpen(true)}>
-                        <AddCircleIcon />
-                    </IconButton>
-                </Tooltip>
-                <AddItineraryItem
-                    tripId={tripId}
-                    addOpen={addOpen}
-                    handleClose={() => setAddOpen(false)}
-                />
+        itinerary.forEach(item => usedTypes.add(item.type));
+
+        return (
+            <div className={classes.root}>
+                <div className={classes.title}>
+                    <Typography variant='h4' className={classes.header}>Itinerary</Typography>
+                    <Tooltip title='Add Item'>
+                        <IconButton aria-label='add' onClick={() => setAddOpen(true)}>
+                            <AddCircleIcon />
+                        </IconButton>
+                    </Tooltip>
+                    <AddItineraryItem
+                        tripId={tripId}
+                        addOpen={addOpen}
+                        handleClose={() => setAddOpen(false)}
+                    />
+                </div>
+                {itinerary.length > 0
+                ? (
+                    <div>
+                        {
+                            Array.from(usedTypes).map(type => {
+                                let itemList = itinerary.filter(item => (
+                                    item.type === type
+                                ));
+                                return (
+                                    <ExpansionPanel expanded={true} key={type} className={classes.panel}>
+                                        <ExpansionPanelSummary className={classes.panelSummary} >
+                                            {headerOptions[type]['icon']}
+                                            <Typography className={classes.panelText}>
+                                                {headerOptions[type]['text']}
+                                            </Typography>
+                                        </ExpansionPanelSummary>
+                                        <ExpansionPanelDetails>
+                                            <ul>
+                                                {itemList.map(item => <ItineraryItem item={item} key={item.id} />)}
+                                            </ul>
+                                        </ExpansionPanelDetails>
+                                    </ExpansionPanel>
+                                )
+                            })
+                        }
+                    </div>
+                )
+                : (
+                    <ExpansionPanel expanded={true} className={classes.panel}>
+                        <ExpansionPanelSummary className={classes.panelSummary} >
+                            <Typography className={classes.emptyText}>
+                                Looks like there isn't anything here yet!
+                            </Typography>
+                        </ExpansionPanelSummary>
+                    </ExpansionPanel>
+                )}
             </div>
-            <div>
-                {
-                    Array.from(usedTypes).map(type => {
-                        let itemList = itinerary.filter(item => (
-                            item.type === type
-                        ));
-                        return (
-                            <ExpansionPanel expanded={true} key={type} className={classes.panel}>
-                                <ExpansionPanelSummary className={classes.panelSummary} >
-                                    {headerOptions[type]['icon']}
-                                    <Typography className={classes.panelText}>
-                                        {headerOptions[type]['text']}
-                                    </Typography>
-                                </ExpansionPanelSummary>
-                                <ExpansionPanelDetails>
-                                    <ul>
-                                        {itemList.map(item => (
-                                            <li key={item.id}>
-                                                <Typography>{item.place}</Typography>
-                                                <IconButton aria-label='delete-item'>
-                                                    <DeleteIcon />
-                                                </IconButton>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </ExpansionPanelDetails>
-                            </ExpansionPanel>
-                        )
-                    })
-                }
-            </div>
-        </div>
-    )
+        )
+    } else {
+        return null
+    }
 };
 
 export default Itinerary;
