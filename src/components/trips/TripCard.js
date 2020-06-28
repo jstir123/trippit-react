@@ -52,10 +52,12 @@ const TripCard = ({trip}) => {
 
     return (
         <Card className={classes.root}>
-            <CardMedia
-                className={classes.tripPic}
-                image={trip.pictures ? trip.pictures[0] : null} //"https://specials-images.forbesimg.com/imageserve/5e086a2f25ab5d0007cf74ec/960x0.jpg?cropX1=1&cropX2=1867&cropY1=0&cropY2=1244"
-            />
+            {trip.pictures && trip.pictures.length > 0 ? (
+                <CardMedia
+                    className={classes.tripPic}
+                    image={trip.pictures[0]}
+                />
+            ) : null}
             <Link to={`/trip/${trip.id}`} className={classes.links}>
                 <CardActionArea>
                     <CardContent className={classes.tripContent}>

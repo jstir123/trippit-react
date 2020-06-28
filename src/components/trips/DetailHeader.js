@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import moment from 'moment';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import Tooltip from '@material-ui/core/Tooltip';
+import RemoveTrip from './RemoveTrip';
+import EditTrip from './EditTrip';
 import {getTripName} from '../../utils/utils';
 import {makeStyles} from '@material-ui/core/styles';
 
@@ -11,8 +17,12 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(3),
         marginRight: theme.spacing(3),
     },
+    title: {
+        display: 'flex',
+    },
     tripName: {
         fontWeight: theme.typography.fontWeightBold,
+        marginRight: theme.spacing(1),
     },
     dateText: {
         fontWeight: theme.typography.fontWeightLight,
@@ -27,14 +37,42 @@ const useStyles = makeStyles((theme) => ({
 
 const DetailHeader = ({trip, isLoaded}) => {
     const classes = useStyles();
+    const [editOpen, setEditOpen] = useState(false);
+    const [removeOpen, setRemoveOpen] = useState(false);
 
     return (
         <div className={classes.header}>
-            <span>
+            <div className={classes.title}>
                 {isLoaded
-                 ? <Typography variant='h3' className={classes.tripName}>{getTripName(trip)}</Typography>
-                 : <Skeleton variant='text' animation='wave' />}
-            </span>
+                 ? (
+                    <>
+                        <Typography variant='h3' className={classes.tripName}>{getTripName(trip)}</Typography>
+                        <Tooltip title='Edit Trip'>
+                            <IconButton aira-label='edit' onClick={() => setEditOpen(true)}>
+                                <EditIcon />
+                            </IconButton>
+                        </Tooltip>
+                        <EditTrip
+                            trip={trip}
+                            tripName={getTripName(trip)}
+                            editOpen={editOpen}
+                            handleClose={() => setEditOpen(false)}
+                        />
+                        <Tooltip title='Remove Trip'>
+                            <IconButton aria-label='delete' onClick={() => setRemoveOpen(true)}>
+                                <DeleteIcon />
+                            </IconButton>
+                        </Tooltip>
+                        <RemoveTrip
+                            tripID={trip.id}
+                            tripName={getTripName(trip)}
+                            removeOpen={removeOpen}
+                            handleClose={() => setRemoveOpen(false)}
+                        />
+                    </>
+                 )
+                 : <Skeleton variant='text' animation='wave' />}  
+            </div>
             <span>
                 {isLoaded
                  ? (
