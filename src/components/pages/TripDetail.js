@@ -24,10 +24,8 @@ const TripDetail = ({auth, trip, itinerary, match}) => {
     return (
         <div className={classes.root}>
             <DetailHeader trip={trip} tripId={tripId} isLoaded={isLoaded(trip)} />
-            <DetailPicList pics={trip && trip.pictures} isLoaded={isLoaded(trip)} />
-
+            <DetailPicList trip={trip} tripId={tripId} />
             <Itinerary itinerary={itinerary} tripId={tripId} />
-            
         </div>
     )
 };

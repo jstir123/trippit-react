@@ -32,6 +32,12 @@ const tripReducer = (state = initState, action) => {
     case 'DELETE_ITINERARY_ITEM_ERROR':
       console.log('Delete itinerary item error', action.error);
       return state;
+    case 'ADD_TRIP_PHOTOS':
+      console.log('Add trip photos');
+      return state;
+    case 'ADD_TRIP_PHOTOS_ERROR':
+      console.log('Add trip photos error', action.error);
+      return state;
     default:
       return state;
   }

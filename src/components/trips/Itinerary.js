@@ -19,6 +19,7 @@ import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        marginTop: theme.spacing(2),
         marginLeft: theme.spacing(3),
         marginRight: theme.spacing(3),
     },
@@ -41,12 +42,17 @@ const useStyles = makeStyles((theme) => ({
     },
     panelText: {
         marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2),
         fontWeight: theme.typography.fontWeightBold,
     },
     emptyText: {
-        marginLeft: theme.spacing(2),
-        marginBottom: theme.spacing(2),
-    }
+        border: '1px solid rgba(0, 0, 0, 0.12)',
+        borderRadius: 5,
+        padding: theme.spacing(2),
+    },
+    list: {
+        width: '100%',
+    },
 }));
 
 const Itinerary = ({itinerary, tripId}) => {
@@ -100,7 +106,7 @@ const Itinerary = ({itinerary, tripId}) => {
                                             </Typography>
                                         </ExpansionPanelSummary>
                                         <ExpansionPanelDetails>
-                                            <ul>
+                                            <ul className={classes.list}>
                                                 {itemList.map(item => <ItineraryItem item={item} key={item.id} />)}
                                             </ul>
                                         </ExpansionPanelDetails>
@@ -111,13 +117,11 @@ const Itinerary = ({itinerary, tripId}) => {
                     </div>
                 )
                 : (
-                    <ExpansionPanel expanded={true} className={classes.panel}>
-                        <ExpansionPanelSummary className={classes.panelSummary} >
-                            <Typography className={classes.emptyText}>
-                                Looks like there isn't anything here yet!
-                            </Typography>
-                        </ExpansionPanelSummary>
-                    </ExpansionPanel>
+                    <div className={classes.emptyText}>
+                        <Typography>
+                            Looks like there isn't anything here yet!
+                        </Typography>
+                    </div>
                 )}
             </div>
         )

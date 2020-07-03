@@ -45,7 +45,7 @@ const DetailHeader = ({trip, tripId, isLoaded}) => {
         <div className={classes.header}>
             <div className={classes.title}>
                 {isLoaded
-                 ? (
+                ? (
                     <>
                         <Typography variant='h3' className={classes.tripName}>{getTripName(trip)}</Typography>
                         <Tooltip title='Edit Trip'>
@@ -71,12 +71,12 @@ const DetailHeader = ({trip, tripId, isLoaded}) => {
                             handleClose={() => setRemoveOpen(false)}
                         />
                     </>
-                 )
-                 : <Skeleton variant='text' animation='wave' />}  
+                )
+                : <Skeleton variant='text' animation='wave' />}  
             </div>
             <span>
                 {isLoaded
-                 ? (
+                ? (
                     <Typography variant='subtitle1' className={classes.dateText}>
                         {trip.startDate
                          ? moment(trip.startDate.toDate()).format('MMM DD, YYYY')
@@ -88,23 +88,21 @@ const DetailHeader = ({trip, tripId, isLoaded}) => {
                          ? moment(trip.endDate.toDate()).format('MMM DD, YYYY')
                          : null}
                     </Typography>
-                 )
-                 : <Skeleton variant='text' animation='wave' />}
+                )
+                : <Skeleton variant='text' animation='wave' />}
             </span>
             <span>
                 {isLoaded
-                 ? (
+                ? (
                         <Typography variant='body1' className={classes.descText}>
                             {trip.description
                             ? trip.description
                             : null}
                         </Typography>
-                 )
-                 : <Skeleton variant='text' animation='wave' />}
+                )
+                : <Skeleton variant='text' animation='wave' />}
             </span>
-            {trip && trip.pictures && trip.pictures.length > 0
-             ? null
-             : <Divider />}
+            <Divider />
         </div>
     )
 };

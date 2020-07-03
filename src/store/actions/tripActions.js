@@ -16,7 +16,8 @@ export const addTrip = (trip) => {
       uid: state.firebase.auth.uid,
       firstName: state.firebase.profile.firstName,
       lastName: state.firebase.profile.lastName,
-      loggedAt: new Date()
+      loggedAt: new Date(),
+      pictures: []
     }).then(() => {
       dispatch({
         type: 'ADD_TRIP',
@@ -67,7 +68,7 @@ export const updateTrip = (tripId, updatedFields) => {
       })
     })
   }
-}
+};
 
 export const addItineraryItem = (item) => {
   return (dispatch, getState, {getFirestore}) => {
@@ -87,7 +88,7 @@ export const addItineraryItem = (item) => {
       })
     })
   }
-}
+};
 
 export const deleteItineraryItem = (itemId) => {
   return (dispatch, getState, {getFirestore}) => {
@@ -106,4 +107,26 @@ export const deleteItineraryItem = (itemId) => {
       })
     })
   }
-}
+};
+
+export const addTripPics = (tripId, urls) => {
+  return (dispatch, getState, {getFirebase, getFirestore}) => {
+    const firebase = getFirebase();
+    const firestore = getFirestore();
+
+    firestore.collection('trips').doc(tripId).update({
+      pictures: firebase.firestore.FieldValue.arrayUnion(...urls)
+    })
+    .then(() => {
+      dispatch({
+        type: 'ADD_TRIP_PHOTOS'
+      })
+    })
+    .catch((error) => {
+      dispatch({
+        type: 'ADD_TRIP_PHOTOS_ERROR',
+        error: error
+      })
+    })
+  }
+};

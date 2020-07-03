@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
   },
   editBtn: {
     height: 25,
-    width: 25,
     '& .MuiSpeedDial-fab': {
       boxShadow: theme.shadows[0],
       background: theme.palette.background.paper,
@@ -156,7 +155,6 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
               <Typography variant='body2' className={classes.lightText}>
                 {`Trips Logged: ${tripCount}`}
               </Typography>
-              
             </>
           )
           : (
