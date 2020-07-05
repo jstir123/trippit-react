@@ -14,8 +14,8 @@ export const addTrip = (trip) => {
       description: trip.description,
       coords: trip.coords ? new firestore.GeoPoint(trip.coords.lat, trip.coords.lng) : false,
       uid: state.firebase.auth.uid,
-      firstName: state.firebase.profile.firstName,
-      lastName: state.firebase.profile.lastName,
+      firstName: state.firebase.profile.firstName || null,
+      lastName: state.firebase.profile.lastName || null,
       loggedAt: new Date(),
       pictures: []
     }).then(() => {

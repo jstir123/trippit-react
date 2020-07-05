@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
+import moment from 'moment';
+import MomentUtils from '@date-io/moment';
+import {updateTrip} from '../../store/actions/tripActions';
+
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -8,11 +12,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import MomentUtils from '@date-io/moment';
-import moment from 'moment';
 import {MuiPickersUtilsProvider, KeyboardDatePicker} from '@material-ui/pickers';
 import {makeStyles} from '@material-ui/core/styles';
-import {updateTrip} from '../../store/actions/tripActions';
+
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -30,26 +32,35 @@ const useStyles = makeStyles((theme) => ({
 
 const EditTrip = ({trip, tripName, editOpen, handleClose, updateTrip}) => {
     const classes = useStyles();
-    const [startDate, setStartDate] = useState(moment(trip.startDate.toDate()).format('MM/DD/YYYY'));
-    const [endDate, setEndDate] = useState(moment(trip.endDate.toDate()).format('MM/DD/YYYY'));
-    const [description, setDescription] = useState(trip.description);
+    const tripId = trip && trip.id
+    const [startDate, setStartDate] = useState(
+        trip && trip.startDate ? moment(trip.startDate.toDate()).format('MM/DD/YYYY') : ''
+    );
+    const [endDate, setEndDate] = useState(
+        trip && trip.endDate ? moment(trip.endDate.toDate()).format('MM/DD/YYYY') : ''
+    );
+    const [description, setDescription] = useState(trip.description || '');
 
     const handleUpdate = () => {
         let updatedFields ={};
 
-        if (startDate !== moment(trip.startDate.toDate()).format('MM/DD/YYYY')) {
+        if (startDate !== (
+            trip && trip.startDate ? moment(trip.startDate.toDate()).format('MM/DD/YYYY') : ''
+        )) {
             updatedFields['startDate'] = new Date(startDate);
         }
 
-        if (endDate !== moment(trip.endDate.toDate()).format('MM/DD/YYYY')) {
+        if (endDate !== (
+            trip && trip.endDate ? moment(trip.endDate.toDate()).format('MM/DD/YYYY') : ''
+        )) {
             updatedFields['endDate'] = new Date(endDate);
         }
 
-        if (description !== trip.description) {
+        if (description !== (trip.description || '')) {
             updatedFields['description'] = description;
         }
 
-        updateTrip(trip.id, updatedFields);
+        updateTrip(tripId, updatedFields);
         handleClose();
     };
 
@@ -57,12 +68,12 @@ const EditTrip = ({trip, tripName, editOpen, handleClose, updateTrip}) => {
         <Dialog
             open={editOpen}
             onClose={handleClose}
-            aria-labelledby={trip.id + '-edit-dialog-title'}
-            aria-describedby={trip.id + '-edit-dialog-description'}
+            aria-labelledby={tripId + '-edit-dialog-title'}
+            aria-describedby={tripId + '-edit-dialog-description'}
         >
-            <DialogTitle id={trip.id + '-edit-dialog-title'}>Edit Trip</DialogTitle>
+            <DialogTitle id={tripId + '-edit-dialog-title'}>Edit Trip</DialogTitle>
             <DialogContent>
-                <DialogContentText id={trip.id + '-edit-dialog-description'}>
+                <DialogContentText id={tripId + '-edit-dialog-description'}>
                     Update your trip to <b>{tripName}.</b>
                 </DialogContentText>
                 <form className={classes.form} noValidate autoComplete='off'>
@@ -125,7 +136,7 @@ const EditTrip = ({trip, tripName, editOpen, handleClose, updateTrip}) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {updateTrip: (tripID, updatedFields) => dispatch(updateTrip(tripID, updatedFields))}
+    return {updateTrip: (tripId, updatedFields) => dispatch(updateTrip(tripId, updatedFields))}
 };
 
 export default connect(null, mapDispatchToProps)(EditTrip);

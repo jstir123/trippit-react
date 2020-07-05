@@ -61,11 +61,7 @@ class MapContainer extends Component {
   }
 
   render = () => {
-    return (
-      <>
-        <div id="map" ref={el => this.mapContainer = el} />
-      </>
-    )
+    return <div id='map' ref={el => this.mapContainer = el} />
   }
 }
 

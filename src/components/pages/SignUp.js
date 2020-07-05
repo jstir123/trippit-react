@@ -41,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     color: theme.palette.text.primary,
-    // textDecoration: 'none',
   },
   errorText: {
     color: theme.palette.error.dark,

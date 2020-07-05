@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
+import {addTrip} from '../../store/actions/tripActions';
+
+import PlacesSearch from './PlacesSearch';
+
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
@@ -15,8 +19,7 @@ import Grid from '@material-ui/core/Grid';
 import MomentUtils from '@date-io/moment';
 import {MuiPickersUtilsProvider, KeyboardDatePicker} from '@material-ui/pickers';
 import {makeStyles} from '@material-ui/core/styles';
-import {addTrip} from '../../store/actions/tripActions';
-import PlacesSearch from './PlacesSearch';
+
 
 const useStyles = makeStyles((theme) => ({
     form: {

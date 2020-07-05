@@ -1,4 +1,10 @@
 import React, {useState} from 'react';
+import ImgsViewer from 'react-images-viewer';
+
+import AddTrip from '../trips/AddTrip';
+import EditProfile from './EditProfile';
+import EditProfPic from './EditProfPic';
+
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -10,10 +16,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import EditIcon from '@material-ui/icons/Edit';
 import Skeleton from '@material-ui/lab/Skeleton';
 import {makeStyles} from '@material-ui/core/styles';
-import AddTrip from '../trips/AddTrip';
-import EditProfile from './EditProfile';
-import EditProfPic from './EditProfPic';
-import ImgsViewer from 'react-images-viewer';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -152,23 +155,20 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
                       onClick={() => setEditProfPicOpen(true)}
                     />
                   </SpeedDial>
-                  {/* <IconButton className={classes.editBtn} onClick={() => setEditOpen(true)}>
-                    <EditIcon />
-                  </IconButton> */}
                   <EditProfile
                     user={user}
                     open={editOpen}
                     handleClose={() => setEditOpen(false)}
                   />
                   <EditProfPic
-                    uid={user.id}
+                    uid={user && user.id}
                     open={editProfPicOpen}
                     handleClose={() => setEditProfPicOpen(false)}
                   />
                 </Grid>
               </Grid>
               <Typography variant='body2' className={classes.lightText}>
-                {`Trips Logged: ${tripCount}`}
+                {`Trips Logged: ${tripCount ? tripCount : 0}`}
               </Typography>
             </>
           )

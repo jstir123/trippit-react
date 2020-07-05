@@ -3,13 +3,16 @@ import {connect} from 'react-redux';
 import {firestoreConnect, isLoaded} from 'react-redux-firebase';
 import {compose} from 'redux';
 import {Redirect} from 'react-router-dom';
-import Paper from '@material-ui/core/Paper';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import MapContainer from '../common/MapContainer';
+
 import ProfileHeader from '../users/ProfileHeader';
 import SearchBar from '../trips/SearchBar';
 import TripList from '../trips/TripList';
+import MapContainer from '../common/MapContainer';
+
+import Paper from '@material-ui/core/Paper';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import {makeStyles} from '@material-ui/core/styles';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,7 +60,7 @@ const Profile = ({auth, trips, user}) => {
         <SearchBar setSearchInput={setSearchInput} />
 
         {isLoaded(trips)
-        ? <TripList trips={filteredTrips} searchInput={searchInput} />
+        ? <TripList trips={filteredTrips} />
         : <CircularProgress color='primary' style={{marginTop: '75px'}} />}
 
       </Paper>

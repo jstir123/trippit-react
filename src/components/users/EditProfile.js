@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
+import {updateProfile} from '../../store/actions/authActions';
+
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -8,7 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import {makeStyles} from '@material-ui/core/styles';
-import {updateProfile} from '../../store/actions/authActions';
+
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -26,26 +28,26 @@ const useStyles = makeStyles((theme) => ({
 
 const EditProfile = ({user, open, handleClose, updateProfile}) => {
     const classes = useStyles();
-    const [firstName, setFirstName] = useState(user.firstName);
-    const [lastName, setLastName] = useState(user.lastName);
-    const [bio, setBio] = useState(user.bio);
+    const [firstName, setFirstName] = useState(user.firstName || '');
+    const [lastName, setLastName] = useState(user.lastName || '');
+    const [bio, setBio] = useState(user.bio || '');
 
     const handleUpdate = () => {
         let updatedFields = {};
 
-        if (firstName !== user.firstName) {
+        if (firstName !== (user.firstName || '')) {
             updatedFields['firstName'] = firstName
         }
 
-        if (lastName !== user.lastName) {
+        if (lastName !== (user.lastName || '')) {
             updatedFields['lastName'] = lastName
         }
 
-        if (bio !== user.bio) {
+        if (bio !== (user.bio || '')) {
             updatedFields['bio'] = bio
         }
 
-        updateProfile(user.id, updatedFields);
+        updateProfile(user && user.id, updatedFields);
         handleClose();
     };
 

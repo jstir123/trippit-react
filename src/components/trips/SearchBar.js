@@ -1,6 +1,7 @@
 import React from 'react';
+
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -10,10 +11,6 @@ const useStyles = makeStyles((theme) => ({
     input: {
         paddingLeft: theme.spacing(2),
         paddingRight: theme.spacing(2),
-        // transition: '0.3s',
-        // '&:hover': {
-        //     transform: 'scale(1.01)',
-        // },
         '& label.Mui-focused': {
             color: theme.palette.grey[400],
           },
@@ -25,16 +22,13 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     inputBorder: {
-        // borderColor: 'rgba(0, 0, 0, 0.12)',
-        // borderStyle: 'none',
         border: '1px solid rgba(0, 0, 0, 0.12)',
         borderRadius: 20,
-        // boxShadow: '0 1px 10px 1px rgba(0,0,0,.1)',
     },
     inputLabel: {
         color: theme.palette.grey[400],
     },
-  }));
+}));
 
 const SearchBar = ({setSearchInput}) => {
     const classes = useStyles();
