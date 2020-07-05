@@ -57,7 +57,8 @@ const AddTripPhotos = ({uid, tripId, open, handleClose, addTripPics, firebase}) 
                 setUploadError(false);
             }
             
-            const uploadTask = storageRef.child(file.name).put(file);
+            let newFileName = Math.floor(Math.random() * 1000000000).toString() + file.name;
+            const uploadTask = storageRef.child(newFileName).put(file);
             const getUrl = new Promise((resolve, reject) => {
                 uploadTask.on(
                 firebase.storage.TaskEvent.STATE_CHANGED,
@@ -83,7 +84,7 @@ const AddTripPhotos = ({uid, tripId, open, handleClose, addTripPics, firebase}) 
                     .then((downloadURL) => {
                         counter++;
                         console.log('File available at', downloadURL);
-                        urls.push({url: downloadURL, name: file.name})
+                        urls.push({url: downloadURL, name: newFileName})
                         setFilesUploaded(counter);
                         resolve();
                     });

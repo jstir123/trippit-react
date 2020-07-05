@@ -52,14 +52,11 @@ const TripCard = ({trip}) => {
 
     return (
         <Card className={classes.root}>
-            {trip.pictures && trip.pictures.length > 0 ? (
-                <CardMedia
-                    className={classes.tripPic}
-                    image={trip.pictures[0]}
-                />
-            ) : null}
             <Link to={`/trip/${trip.id}`} className={classes.links}>
                 <CardActionArea>
+                    {trip.pictures && trip.pictures.length > 0
+                    ? <CardMedia className={classes.tripPic} image={trip.pictures[0].url} />
+                    : null}
                     <CardContent className={classes.tripContent}>
                         <Typography variant="h5" component="h2">
                             {getTripName(trip)}

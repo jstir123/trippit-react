@@ -38,6 +38,12 @@ const tripReducer = (state = initState, action) => {
     case 'ADD_TRIP_PHOTOS_ERROR':
       console.log('Add trip photos error', action.error);
       return state;
+    case 'REMOVE_TRIP_PHOTO':
+      console.log('Remove trip photo');
+      return state;
+    case 'REMOVE_TRIP_PHOTO_ERROR':
+      console.log('Remove trip photo error', action.error);
+      return state;
     default:
       return state;
   }

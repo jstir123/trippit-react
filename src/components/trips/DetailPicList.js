@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import ImgsViewer from 'react-images-viewer';
 import AddTripPhotos from './AddTripPhotos';
+import DeleteTripPhotoBtn from './DeleteTripPhotoBtn';
 import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -31,7 +32,9 @@ const useStyles = makeStyles((theme) => ({
         transform: 'translateZ(0)',
     },
     pic: {
-
+        '&:hover': {
+            cursor: 'pointer',
+        },
     },
     emptyText: {
         border: '1px solid rgba(0, 0, 0, 0.12)',
@@ -84,6 +87,11 @@ const DetailPicList = ({trip, tripId}) => {
                                     alt=''
                                     onClick={() => handleClick(pic)}
                                     className={classes.pic}
+                                />
+                                <DeleteTripPhotoBtn
+                                    uid={trip && trip.uid}
+                                    tripId={tripId}
+                                    pic={pic}
                                 />
                             </GridListTile>
                         ))}

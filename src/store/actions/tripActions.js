@@ -130,3 +130,25 @@ export const addTripPics = (tripId, urls) => {
     })
   }
 };
+
+export const deleteTripPic = (tripId, pic) => {
+  return (dispatch, getState, {getFirebase, getFirestore}) => {
+    const firebase = getFirebase();
+    const firestore = getFirestore();
+
+    firestore.collection('trips').doc(tripId).update({
+      pictures: firebase.firestore.FieldValue.arrayRemove(pic)
+    })
+    .then(() => {
+      dispatch({
+        type: 'REMOVE_TRIP_PHOTO'
+      })
+    })
+    .catch((error) => {
+      dispatch({
+        type: 'REMOVE_TRIP_PHOTO_ERROR',
+        error: error
+      })
+    })
+  }
+};

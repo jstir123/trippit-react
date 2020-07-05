@@ -13,6 +13,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import AddTrip from '../trips/AddTrip';
 import EditProfile from './EditProfile';
 import EditProfPic from './EditProfPic';
+import ImgsViewer from 'react-images-viewer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     border: '1px solid rgba(0, 0, 0, 0.12)',
     boxShadow: '0 1px 10px 0 rgba(0,0,0,.12)',
+    cursor: 'pointer',
     transition: '0.3s',
     '&:hover': {
       transform: 'translateY(-1px)',
@@ -86,6 +88,7 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
   const [editOpen, setEditOpen] = useState(false);
   const [speedDialOpen, setSpeedDialOpen] = useState(false);
   const [editProfPicOpen, setEditProfPicOpen] = useState(false);
+  const [imgViewerOpen, setImgViewerOpen] = useState(false);
 
   return (
     <Paper className={classes.root} elevation={0}>
@@ -96,11 +99,23 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
             className={classes.head}>
         <Grid item xs={12} className={classes.profPicGrid}>
           {isLoaded
-          ? <Avatar
-              src={user && user.profilePicURL}
-              onClick={() => console.log('click')}
-              className={classes.profPic}
-            />
+          ? (
+            <>
+              <Avatar
+                  src={user && user.profilePicURL}
+                  onClick={() => setImgViewerOpen(true)}
+                  className={classes.profPic}
+                />
+                <ImgsViewer
+                  imgs={[{src: user && user.profilePicURL}]}
+                  isOpen={imgViewerOpen}
+                  onClose={() => setImgViewerOpen(false)}
+                  currImg={0}
+                  imgCountSeparator=' of '
+                  backdropCloseable={true}
+              />
+            </>
+          )
           : <Skeleton variant='circle' animation='wave' className={classes.profPic} />}
         </Grid>
         <Grid item xs={12} className={classes.nameGrid}>
