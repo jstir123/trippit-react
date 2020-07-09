@@ -19,12 +19,12 @@ const RemoveItineraryItem = ({item, open, handleClose, deleteItineraryItem}) => 
         <Dialog
             open={open}
             onClose={handleClose}
-            aria-labelledby={item.id + '-remove-dialog-title'}
-            aria-describedby={item.id + '-remove-dialog-description'}
+            aria-labelledby={item && item.id + '-remove-dialog-title'}
+            aria-describedby={item && item.id + '-remove-dialog-description'}
         >
-            <DialogTitle id={item.id + '-remove-dialog-title'}>Remove Place</DialogTitle>
+            <DialogTitle id={item && item.id + '-remove-dialog-title'}>Remove Place</DialogTitle>
             <DialogContent>
-                <DialogContentText id={item.id + '-remove-dialog-description'}>
+                <DialogContentText id={item && item.id + '-remove-dialog-description'}>
                     Are you sure you want to remove <b>{item.place}</b> from your itinerary?
                 </DialogContentText>
             </DialogContent>

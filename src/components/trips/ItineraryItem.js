@@ -24,7 +24,7 @@ const ItineraryItem = ({item}) => {
 
     return (
         <li className={classes.item}>
-            <Typography>{item.place}</Typography>
+            <Typography>{item && item.place}</Typography>
             <Tooltip title='Remove Item'>
                 <IconButton aria-label='delete-item' size='small' onClick={() => setRemoveItemOpen(true)}>
                     <DeleteIcon />

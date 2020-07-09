@@ -8,6 +8,7 @@ import ProfileHeader from '../users/ProfileHeader';
 import SearchBar from '../trips/SearchBar';
 import TripList from '../trips/TripList';
 import MapContainer from '../common/MapContainer';
+import Spinner from '../common/Spinner';
 
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Profile = ({auth, trips, user}) => {
+const Profile = ({auth, trips, user, match}) => {
   const classes = useStyles();
   const [searchInput, setSearchInput] = useState('');
 
@@ -55,14 +56,19 @@ const Profile = ({auth, trips, user}) => {
 
       <Paper className={classes.root} elevation={0}>
 
-        <ProfileHeader user={user && user[0]} tripCount={tripCount} isLoaded={isLoaded(user)} />
+      {match.params.uid === (user && user[0].id)
+      ? (
+        <>
+          <ProfileHeader user={user && user[0]} tripCount={tripCount} isLoaded={isLoaded(user)} />
 
-        <SearchBar setSearchInput={setSearchInput} />
+          <SearchBar setSearchInput={setSearchInput} />
 
-        {isLoaded(trips)
-        ? <TripList trips={filteredTrips} />
-        : <CircularProgress color='primary' style={{marginTop: '75px'}} />}
-
+          {isLoaded(trips)
+          ? <TripList trips={filteredTrips} />
+          : <CircularProgress color='primary' style={{marginTop: '75px'}} />}
+        </>
+      )
+      : <Spinner />}
       </Paper>
     </>
   )
