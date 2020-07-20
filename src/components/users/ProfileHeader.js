@@ -85,13 +85,14 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ProfileHeader = ({user, tripCount, isLoaded}) => {
+const ProfileHeader = ({user, tripCount, isLoaded, uid}) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [speedDialOpen, setSpeedDialOpen] = useState(false);
   const [editProfPicOpen, setEditProfPicOpen] = useState(false);
   const [imgViewerOpen, setImgViewerOpen] = useState(false);
+  const displayData = isLoaded && (uid === (user && user.id))
 
   return (
     <Paper className={classes.root} elevation={0}>
@@ -101,7 +102,7 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
             spacing={1}
             className={classes.head}>
         <Grid item xs={12} className={classes.profPicGrid}>
-          {isLoaded
+          {displayData
           ? (
             <>
               <Avatar
@@ -122,7 +123,7 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
           : <Skeleton variant='circle' animation='wave' className={classes.profPic} />}
         </Grid>
         <Grid item xs={12} className={classes.nameGrid}>
-          {isLoaded
+          {displayData
           ? (
             <>
               <Grid container alignItems='center' className={classes.nameGrid}>
@@ -182,7 +183,7 @@ const ProfileHeader = ({user, tripCount, isLoaded}) => {
       </Grid>
       <Grid container justify='center'>
         <Grid item xs={12} className={classes.bioGrid}>
-          {isLoaded
+          {displayData
           ? (
             <Typography variant='body2' className={classes.lightText}>
               {user && user.bio}

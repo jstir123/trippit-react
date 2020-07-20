@@ -8,7 +8,7 @@ import ProfileHeader from '../users/ProfileHeader';
 import SearchBar from '../trips/SearchBar';
 import TripList from '../trips/TripList';
 import MapContainer from '../common/MapContainer';
-import Spinner from '../common/Spinner';
+import {getTripName} from '../../utils/utils';
 
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -45,7 +45,8 @@ const Profile = ({auth, trips, user, match}) => {
           trip.state.toLowerCase().includes(searchInput.toLowerCase()) ||
           trip.country.toLowerCase().includes(searchInput.toLowerCase()) ||
           trip.firstName.toLowerCase().includes(searchInput.toLowerCase()) ||
-          trip.lastName.toLowerCase().includes(searchInput.toLowerCase())
+          trip.lastName.toLowerCase().includes(searchInput.toLowerCase()) ||
+          getTripName(trip).toLowerCase().includes(searchInput.toLowerCase())
       )
     });
   }
@@ -56,19 +57,19 @@ const Profile = ({auth, trips, user, match}) => {
 
       <Paper className={classes.root} elevation={0}>
 
-      {match.params.uid === (user && user[0].id)
-      ? (
-        <>
-          <ProfileHeader user={user && user[0]} tripCount={tripCount} isLoaded={isLoaded(user)} />
+        <ProfileHeader
+          user={user && user[0]}
+          tripCount={tripCount}
+          isLoaded={isLoaded(user)}
+          uid={match.params.uid} 
+        />
 
-          <SearchBar setSearchInput={setSearchInput} />
+        <SearchBar setSearchInput={setSearchInput} />
 
-          {isLoaded(trips)
-          ? <TripList trips={filteredTrips} />
-          : <CircularProgress color='primary' style={{marginTop: '75px'}} />}
-        </>
-      )
-      : <Spinner />}
+        {isLoaded(trips)
+        ? <TripList trips={filteredTrips} />
+        : <CircularProgress color='primary' style={{marginTop: '75px'}} />}
+
       </Paper>
     </>
   )

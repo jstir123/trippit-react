@@ -20,23 +20,28 @@ const useStyles = makeStyles((theme) => ({
 
 const TripDetail = ({auth, trip, itinerary, match}) => {
     const classes = useStyles();
-    const tripId = match.params.id
+    const tripId = trip && trip.id;
+    const tripMatch = match.params.id === tripId;
 
     if (auth.isEmpty) return <Redirect to='/login' />
 
     return (
-        <div className={classes.root}>
-            <DetailHeader trip={trip} tripId={tripId} isLoaded={isLoaded(trip)} />
-            <DetailPicList trip={trip} tripId={tripId} />
-            <Itinerary itinerary={itinerary} tripId={tripId} />
-        </div>
+        isLoaded(trip) && tripMatch
+        ? (
+            <div className={classes.root}>
+                <DetailHeader trip={trip} tripId={tripId} />
+                <DetailPicList trip={trip} tripId={tripId} />
+                <Itinerary itinerary={itinerary} tripId={tripId} />
+            </div>
+        )
+        : <Spinner />
     )
 };
 
 const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
-        trip: state.firestore.data['trip'],
+        trip: state.firestore.ordered.trip && state.firestore.ordered.trip[0],
         itinerary: state.firestore.ordered.itinerary
     }
 };

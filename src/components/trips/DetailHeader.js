@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
 import moment from 'moment';
+
+import RemoveTrip from './RemoveTrip';
+import EditTrip from './EditTrip';
+import {getTripName} from '../../utils/utils';
+
 import Typography from '@material-ui/core/Typography';
-import Skeleton from '@material-ui/lab/Skeleton';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Tooltip from '@material-ui/core/Tooltip';
-import RemoveTrip from './RemoveTrip';
-import EditTrip from './EditTrip';
-import {getTripName} from '../../utils/utils';
 import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const DetailHeader = ({trip, tripId, isLoaded}) => {
+const DetailHeader = ({trip, tripId}) => {
     const classes = useStyles();
     const [editOpen, setEditOpen] = useState(false);
     const [removeOpen, setRemoveOpen] = useState(false);
@@ -44,63 +45,49 @@ const DetailHeader = ({trip, tripId, isLoaded}) => {
     return (
         <div className={classes.header}>
             <div className={classes.title}>
-                {isLoaded
-                ? (
-                    <>
-                        <Typography variant='h3' className={classes.tripName}>{getTripName(trip)}</Typography>
-                        <Tooltip title='Edit Trip'>
-                            <IconButton aira-label='edit' onClick={() => setEditOpen(true)}>
-                                <EditIcon />
-                            </IconButton>
-                        </Tooltip>
-                        <EditTrip
-                            trip={{id: tripId, ...trip}}
-                            tripName={getTripName(trip)}
-                            editOpen={editOpen}
-                            handleClose={() => setEditOpen(false)}
-                        />
-                        <Tooltip title='Remove Trip'>
-                            <IconButton aria-label='delete' onClick={() => setRemoveOpen(true)}>
-                                <DeleteIcon />
-                            </IconButton>
-                        </Tooltip>
-                        <RemoveTrip
-                            tripID={tripId}
-                            tripName={getTripName(trip)}
-                            removeOpen={removeOpen}
-                            handleClose={() => setRemoveOpen(false)}
-                        />
-                    </>
-                )
-                : <Skeleton variant='text' animation='wave' />}  
+                <Typography variant='h3' className={classes.tripName}>{getTripName(trip)}</Typography>
+                <Tooltip title='Edit Trip'>
+                    <IconButton aira-label='edit' onClick={() => setEditOpen(true)}>
+                        <EditIcon />
+                    </IconButton>
+                </Tooltip>
+                <EditTrip
+                    trip={{id: tripId, ...trip}}
+                    tripName={getTripName(trip)}
+                    editOpen={editOpen}
+                    handleClose={() => setEditOpen(false)}
+                />
+                <Tooltip title='Remove Trip'>
+                    <IconButton aria-label='delete' onClick={() => setRemoveOpen(true)}>
+                        <DeleteIcon />
+                    </IconButton>
+                </Tooltip>
+                <RemoveTrip
+                    tripID={tripId}
+                    tripName={getTripName(trip)}
+                    removeOpen={removeOpen}
+                    handleClose={() => setRemoveOpen(false)}
+                /> 
             </div>
             <span>
-                {isLoaded
-                ? (
-                    <Typography variant='subtitle1' className={classes.dateText}>
-                        {trip.startDate
-                         ? moment(trip.startDate.toDate()).format('MMM DD, YYYY')
-                         : null}
-                        {trip.startDate && trip.endDate
-                         ? ' - '
-                         : null}
-                        {trip.endDate
-                         ? moment(trip.endDate.toDate()).format('MMM DD, YYYY')
-                         : null}
-                    </Typography>
-                )
-                : <Skeleton variant='text' animation='wave' />}
+                <Typography variant='subtitle1' className={classes.dateText}>
+                    {trip.startDate
+                        ? moment(trip.startDate.toDate()).format('MMM DD, YYYY')
+                        : null}
+                    {trip.startDate && trip.endDate
+                        ? ' - '
+                        : null}
+                    {trip.endDate
+                        ? moment(trip.endDate.toDate()).format('MMM DD, YYYY')
+                        : null}
+                </Typography>
             </span>
             <span>
-                {isLoaded
-                ? (
-                        <Typography variant='body1' className={classes.descText}>
-                            {trip.description
-                            ? trip.description
-                            : null}
-                        </Typography>
-                )
-                : <Skeleton variant='text' animation='wave' />}
+                <Typography variant='body1' className={classes.descText}>
+                    {trip.description
+                        ? trip.description
+                        : null}
+                </Typography>
             </span>
             <Divider />
         </div>
