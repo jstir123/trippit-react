@@ -5,10 +5,10 @@ import {compose} from 'redux';
 import {Redirect} from 'react-router-dom';
 
 import Spinner from '../common/Spinner';
-
 import DetailHeader from '../trips/DetailHeader';
 import DetailPicList from '../trips/DetailPicList';
 import Itinerary from '../trips/Itinerary';
+
 import {makeStyles} from '@material-ui/core/styles';
 
 
