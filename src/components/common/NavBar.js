@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+
 import NavDrawer from './NavDrawer';
+import {signOut} from '../../store/actions/authActions';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
@@ -9,17 +13,35 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Divider from '@material-ui/core/Divider';
 import {makeStyles} from '@material-ui/core/styles';
-import {signOut} from '../../store/actions/authActions';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // flexGrow: 1,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  menuText: {
+    display: 'none',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    [theme.breakpoints.up('sm')]: {
+      display: 'flex',
+    },
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    display: 'flex',
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
   },
   title: {
-    flexGrow: 1,
+    // flexGrow: 1,
+  },
+  link: {
+    color: theme.palette.text.primary,
+    textDecoration: 'none',
   },
   navbar: {
     color: theme.palette.text.primary,
@@ -40,9 +62,6 @@ const useStyles = makeStyles((theme) => ({
   navDrawer: {
     width: 360,
   },
-  link: {
-    color: theme.palette.text.primary,
-  },
 }));
 
 const NavBar = ({auth, profile, signOut}) => {
@@ -58,9 +77,9 @@ const NavBar = ({auth, profile, signOut}) => {
   };
 
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="fixed" className={classes.navbar}>
-        <Toolbar>
+        <Toolbar className={classes.root}>
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -77,11 +96,19 @@ const NavBar = ({auth, profile, signOut}) => {
             auth={auth}
             profile={profile}
             />
+          {auth.uid
+            ? (
+              <div className={classes.menuText}>
+                <Link to={`/profile/${auth.uid}`} className={classes.link}>
+                  <Button color='inherit'>My Trips</Button>
+                </Link>
+              </div>
+            ) : null}
           <Typography variant="h5" className={classes.title}>
             Trippit
           </Typography>
           {auth.uid ? (
-            <>
+            <div className={classes.root}>
               <Typography variant="body1">
                 {profile && profile.firstName
                 ? `Hi, ${profile.firstName}`
@@ -95,7 +122,7 @@ const NavBar = ({auth, profile, signOut}) => {
                 >
                 Logout
               </Button>
-            </>
+            </div>
           ) : (null)}
         </Toolbar>
         <Divider />

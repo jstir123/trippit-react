@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
   },
   primaryBackground: {
     backgroundColor: theme.palette.primary.main,
+  },
+  secondaryBackground: {
+    backgroundColor: theme.palette.secondary.main,
   }
 }));
 
@@ -66,7 +69,7 @@ const NavDrawer = ({open, handleClose, auth, signOut, profile}) => {
               <Link to='/login' className={classes.link}>
                 <ListItem button component="nav">
                   <ListItemAvatar>
-                    <Avatar>
+                    <Avatar className={classes.primaryBackground}>
                       <LockOpenIcon />
                     </Avatar>
                   </ListItemAvatar>
@@ -77,7 +80,7 @@ const NavDrawer = ({open, handleClose, auth, signOut, profile}) => {
               <Link to='/signup' className={classes.link}>
                 <ListItem button component="nav">
                   <ListItemAvatar>
-                    <Avatar>
+                    <Avatar className={classes.secondaryBackground}>
                       <PersonAddIcon />
                     </Avatar>
                   </ListItemAvatar>
