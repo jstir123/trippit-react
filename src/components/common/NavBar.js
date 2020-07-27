@@ -104,9 +104,11 @@ const NavBar = ({auth, profile, signOut}) => {
                 </Link>
               </div>
             ) : null}
-          <Typography variant="h5" className={classes.title}>
-            Trippit
-          </Typography>
+          <Link to='/' className={classes.link}>
+            <Typography variant="h5" className={classes.title}>
+              Trippit
+            </Typography>
+          </Link>
           {auth.uid ? (
             <div className={classes.root}>
               <Typography variant="body1">

@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ProfileHeader = ({user, tripCount, isLoaded, uid}) => {
+const ProfileHeader = ({auth, user, tripCount, isLoaded, uid}) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
@@ -135,38 +135,41 @@ const ProfileHeader = ({user, tripCount, isLoaded, uid}) => {
                     {`${user && user.firstName} ${user && user.lastName}`}
                   </Typography>
                 </Grid>
-                <Grid item xs={1}>
-                  <SpeedDial
-                    ariaLabel='Edit Profile'
-                    className={classes.editBtn}
-                    icon={<EditIcon />}
-                    onClose={() => setSpeedDialOpen(false)}
-                    onOpen={() => setSpeedDialOpen(true)}
-                    open={speedDialOpen}
-                    direction='up'
-                  >
-                    <SpeedDialAction
-                      icon={<EditIcon />}
-                      tooltipTitle='Edit Profile Info'
-                      onClick={() => setEditOpen(true)}
-                    />
-                    <SpeedDialAction
-                      icon={<EditIcon />}
-                      tooltipTitle='Edit Profile Picture'
-                      onClick={() => setEditProfPicOpen(true)}
-                    />
-                  </SpeedDial>
-                  <EditProfile
-                    user={user}
-                    open={editOpen}
-                    handleClose={() => setEditOpen(false)}
-                  />
-                  <EditProfPic
-                    uid={user && user.id}
-                    open={editProfPicOpen}
-                    handleClose={() => setEditProfPicOpen(false)}
-                  />
-                </Grid>
+                {auth.uid === uid
+                  ? (
+                    <Grid item xs={1}>
+                      <SpeedDial
+                        ariaLabel='Edit Profile'
+                        className={classes.editBtn}
+                        icon={<EditIcon />}
+                        onClose={() => setSpeedDialOpen(false)}
+                        onOpen={() => setSpeedDialOpen(true)}
+                        open={speedDialOpen}
+                        direction='up'
+                      >
+                        <SpeedDialAction
+                          icon={<EditIcon />}
+                          tooltipTitle='Edit Profile Info'
+                          onClick={() => setEditOpen(true)}
+                        />
+                        <SpeedDialAction
+                          icon={<EditIcon />}
+                          tooltipTitle='Edit Profile Picture'
+                          onClick={() => setEditProfPicOpen(true)}
+                        />
+                      </SpeedDial>
+                      <EditProfile
+                        user={user}
+                        open={editOpen}
+                        handleClose={() => setEditOpen(false)}
+                      />
+                      <EditProfPic
+                        uid={user && user.id}
+                        open={editProfPicOpen}
+                        handleClose={() => setEditProfPicOpen(false)}
+                      />
+                    </Grid>
+                  ) : null}
               </Grid>
               <Typography variant='body2' className={classes.lightText}>
                 {`Trips Logged: ${tripCount ? tripCount : 0}`}
@@ -194,18 +197,22 @@ const ProfileHeader = ({user, tripCount, isLoaded, uid}) => {
       </Grid>
       <Grid container justify='center'>
         <Grid item className={classes.btnGrid}>
-          <Button
-            variant='contained'
-            color='primary'
-            size='small'
-            className={classes.addButton}
-            startIcon={<AddCircleIcon/>}
-            onClick={() => setOpen(true)}
-          >
-            Add Trip
-          </Button>
-          <AddTrip open={open} handleClose={() => setOpen(false)}
-          />
+          {auth.uid === uid
+            ? (
+              <>
+                <Button
+                  variant='contained'
+                  color='primary'
+                  size='small'
+                  className={classes.addButton}
+                  startIcon={<AddCircleIcon/>}
+                  onClick={() => setOpen(true)}
+                >
+                  Add Trip
+                </Button>
+                <AddTrip open={open} handleClose={() => setOpen(false)} />
+              </>
+            ) : null}
         </Grid>
       </Grid>
     </Paper>

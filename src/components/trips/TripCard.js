@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 import moment from 'moment';
-import {getTripName} from '../../utils/utils';
 
 import RemoveTrip from './RemoveTrip';
 import EditTrip from './EditTrip';
+import {getTripName} from '../../utils/utils';
 
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -50,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 const TripCard = ({trip}) => {
     const classes = useStyles();
+    const auth = useSelector(state => state.firebase.auth);
     const [removeOpen, setRemoveOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
 
@@ -84,24 +86,29 @@ const TripCard = ({trip}) => {
                 </CardActionArea>
             </Link>
             <CardActions>
-                <Button size="small" color="primary" onClick={() => setEditOpen(true)}>
-                    Edit
-                </Button>
-                <EditTrip
-                    trip={trip}
-                    tripName={getTripName(trip)}
-                    editOpen={editOpen}
-                    handleClose={() => setEditOpen(false)}
-                />
-                <Button size="small" color="primary" onClick={() => setRemoveOpen(true)}>
-                    Remove
-                </Button>
-                <RemoveTrip
-                    tripID={trip.id}
-                    tripName={getTripName(trip)}
-                    removeOpen={removeOpen}
-                    handleClose={() => setRemoveOpen(false)}
-                />
+                {auth.uid === trip.uid
+                    ? (
+                        <>
+                            <Button size="small" color="primary" onClick={() => setEditOpen(true)}>
+                                Edit
+                            </Button>
+                            <EditTrip
+                                trip={trip}
+                                tripName={getTripName(trip)}
+                                editOpen={editOpen}
+                                handleClose={() => setEditOpen(false)}
+                            />
+                            <Button size="small" color="primary" onClick={() => setRemoveOpen(true)}>
+                                Remove
+                            </Button>
+                            <RemoveTrip
+                                tripID={trip.id}
+                                tripName={getTripName(trip)}
+                                removeOpen={removeOpen}
+                                handleClose={() => setRemoveOpen(false)}
+                            />
+                        </>
+                    ) : null}
             </CardActions>
         </Card>
     )
