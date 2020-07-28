@@ -31,7 +31,7 @@ const TripDetail = ({auth, trip, itinerary, match}) => {
             <div className={classes.root}>
                 <DetailHeader trip={trip} tripId={tripId} />
                 <DetailPicList trip={trip} tripId={tripId} />
-                <Itinerary itinerary={itinerary} tripId={tripId} />
+                <Itinerary itinerary={itinerary} uid={trip && trip.uid} tripId={tripId} />
             </div>
         )
         : <Spinner />

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
 import moment from 'moment';
 
 import RemoveTrip from './RemoveTrip';
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 const DetailHeader = ({trip, tripId}) => {
     const classes = useStyles();
+    const auth = useSelector(state => state.firebase.auth);
     const [editOpen, setEditOpen] = useState(false);
     const [removeOpen, setRemoveOpen] = useState(false);
 
@@ -46,28 +48,33 @@ const DetailHeader = ({trip, tripId}) => {
         <div className={classes.header}>
             <div className={classes.title}>
                 <Typography variant='h3' className={classes.tripName}>{getTripName(trip)}</Typography>
-                <Tooltip title='Edit Trip'>
-                    <IconButton aira-label='edit' onClick={() => setEditOpen(true)}>
-                        <EditIcon />
-                    </IconButton>
-                </Tooltip>
-                <EditTrip
-                    trip={{id: tripId, ...trip}}
-                    tripName={getTripName(trip)}
-                    editOpen={editOpen}
-                    handleClose={() => setEditOpen(false)}
-                />
-                <Tooltip title='Remove Trip'>
-                    <IconButton aria-label='delete' onClick={() => setRemoveOpen(true)}>
-                        <DeleteIcon />
-                    </IconButton>
-                </Tooltip>
-                <RemoveTrip
-                    tripID={tripId}
-                    tripName={getTripName(trip)}
-                    removeOpen={removeOpen}
-                    handleClose={() => setRemoveOpen(false)}
-                /> 
+                {auth.uid === (trip && trip.uid)
+                    ? (
+                        <>
+                            <Tooltip title='Edit Trip'>
+                                <IconButton aira-label='edit' onClick={() => setEditOpen(true)}>
+                                    <EditIcon />
+                                </IconButton>
+                            </Tooltip>
+                            <EditTrip
+                                trip={{id: tripId, ...trip}}
+                                tripName={getTripName(trip)}
+                                editOpen={editOpen}
+                                handleClose={() => setEditOpen(false)}
+                            />
+                            <Tooltip title='Remove Trip'>
+                                <IconButton aria-label='delete' onClick={() => setRemoveOpen(true)}>
+                                    <DeleteIcon />
+                                </IconButton>
+                            </Tooltip>
+                            <RemoveTrip
+                                tripID={tripId}
+                                tripName={getTripName(trip)}
+                                removeOpen={removeOpen}
+                                handleClose={() => setRemoveOpen(false)}
+                            />
+                        </> 
+                    ) : null}
             </div>
             <span>
                 <Typography variant='subtitle1' className={classes.dateText}>

@@ -1,4 +1,9 @@
 import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
+
+import AddItineraryItem from './AddItineraryItem';
+import ItineraryItem from './ItineraryItem';
+
 import Typography from '@material-ui/core/Typography';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -13,8 +18,6 @@ import WhatshotIcon from '@material-ui/icons/Whatshot';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import GradeIcon from '@material-ui/icons/Grade';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import AddItineraryItem from './AddItineraryItem';
-import ItineraryItem from './ItineraryItem';
 import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -55,8 +58,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Itinerary = ({itinerary, tripId}) => {
+const Itinerary = ({itinerary, tripId, uid}) => {
     const classes = useStyles();
+    const auth = useSelector(state => state.firebase.auth);
     const [addOpen, setAddOpen] = useState(false);
     let usedTypes = new Set();
 
@@ -78,16 +82,21 @@ const Itinerary = ({itinerary, tripId}) => {
             <div className={classes.root}>
                 <div className={classes.title}>
                     <Typography variant='h4' className={classes.header}>Itinerary</Typography>
-                    <Tooltip title='Add Item'>
-                        <IconButton aria-label='add' onClick={() => setAddOpen(true)}>
-                            <AddCircleIcon />
-                        </IconButton>
-                    </Tooltip>
-                    <AddItineraryItem
-                        tripId={tripId}
-                        addOpen={addOpen}
-                        handleClose={() => setAddOpen(false)}
-                    />
+                    {auth.uid === uid
+                        ? (
+                            <>
+                                <Tooltip title='Add Item'>
+                                    <IconButton aria-label='add' onClick={() => setAddOpen(true)}>
+                                        <AddCircleIcon />
+                                    </IconButton>
+                                </Tooltip>
+                                <AddItineraryItem
+                                    tripId={tripId}
+                                    addOpen={addOpen}
+                                    handleClose={() => setAddOpen(false)}
+                                />
+                            </>
+                        ) : null}
                 </div>
                 {itinerary.length > 0
                 ? (

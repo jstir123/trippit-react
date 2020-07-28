@@ -100,12 +100,16 @@ const NavBar = ({auth, profile, signOut}) => {
             ? (
               <div className={classes.menuText}>
                 <Link to={`/profile/${auth.uid}`} className={classes.link}>
-                  <Button color='inherit'>My Trips</Button>
+                  <Button color='inherit' style={{ textTransform: 'none' }}>
+                    <Typography variant='body1'>
+                      My Trips
+                    </Typography>
+                  </Button>
                 </Link>
               </div>
             ) : null}
           <Link to='/' className={classes.link}>
-            <Typography variant="h5" className={classes.title}>
+            <Typography variant='h4' className={classes.title}>
               Trippit
             </Typography>
           </Link>

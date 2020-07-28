@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
+import ImgsViewer from 'react-images-viewer';
+
+import AddTripPhotos from './AddTripPhotos';
+import DeleteTripPhotoBtn from './DeleteTripPhotoBtn';
+
 import Typography from '@material-ui/core/Typography';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import ImgsViewer from 'react-images-viewer';
-import AddTripPhotos from './AddTripPhotos';
-import DeleteTripPhotoBtn from './DeleteTripPhotoBtn';
 import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 const DetailPicList = ({trip, tripId}) => {
     const classes = useStyles();
+    const auth = useSelector(state => state.firebase.auth);
     const [open, setOpen] = useState(false);
     const [addOpen, setAddOpen] = useState(false);
     const [imgIndex, setImgIndex] = useState(0);
@@ -64,17 +68,22 @@ const DetailPicList = ({trip, tripId}) => {
         <div className={classes.root}>
             <div className={classes.title}>
                 <Typography variant='h4' className={classes.header}>Photos</Typography>
-                <Tooltip title='Add Photos'>
-                    <IconButton aria-label='add' onClick={() => setAddOpen(true)}>
-                        <AddCircleIcon />
-                    </IconButton>
-                </Tooltip>
-                <AddTripPhotos
-                    uid={trip && trip.uid}
-                    tripId={tripId}
-                    open={addOpen}
-                    handleClose={() => setAddOpen(false)}
-                />
+                {auth.uid === (trip && trip.uid)
+                    ? (
+                        <>
+                            <Tooltip title='Add Photos'>
+                                <IconButton aria-label='add' onClick={() => setAddOpen(true)}>
+                                    <AddCircleIcon />
+                                </IconButton>
+                            </Tooltip>
+                            <AddTripPhotos
+                                uid={trip && trip.uid}
+                                tripId={tripId}
+                                open={addOpen}
+                                handleClose={() => setAddOpen(false)}
+                            />
+                        </>
+                    ) : null}
             </div>
             {pics && pics.length > 0
             ? (
