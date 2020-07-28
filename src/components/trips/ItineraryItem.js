@@ -18,23 +18,28 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const ItineraryItem = ({item}) => {
+const ItineraryItem = ({item, auth, uid}) => {
     const classes = useStyles();
     const [removeItemOpen, setRemoveItemOpen] = useState(false);
 
     return (
         <li className={classes.item}>
             <Typography>{item && item.place}</Typography>
-            <Tooltip title='Remove Item'>
-                <IconButton aria-label='delete-item' size='small' onClick={() => setRemoveItemOpen(true)}>
-                    <DeleteIcon />
-                </IconButton>
-            </Tooltip>
-            <RemoveItineraryItem
-                open={removeItemOpen}
-                item={item}
-                handleClose={() => setRemoveItemOpen(false)}
-            />
+            {auth.uid === uid
+                ? (
+                    <>
+                        <Tooltip title='Remove Item'>
+                            <IconButton aria-label='delete-item' size='small' onClick={() => setRemoveItemOpen(true)}>
+                                <DeleteIcon />
+                            </IconButton>
+                        </Tooltip>
+                        <RemoveItineraryItem
+                            open={removeItemOpen}
+                            item={item}
+                            handleClose={() => setRemoveItemOpen(false)}
+                        />
+                    </>
+                ) : null}
         </li>
     )
 };

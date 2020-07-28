@@ -116,7 +116,14 @@ const Itinerary = ({itinerary, tripId, uid}) => {
                                         </ExpansionPanelSummary>
                                         <ExpansionPanelDetails>
                                             <ul className={classes.list}>
-                                                {itemList.map(item => <ItineraryItem item={item} key={item.id} />)}
+                                                {itemList.map(item => (
+                                                    <ItineraryItem
+                                                        auth={auth}
+                                                        uid={uid}
+                                                        item={item}
+                                                        key={item.id}
+                                                    />
+                                                ))}
                                             </ul>
                                         </ExpansionPanelDetails>
                                     </ExpansionPanel>

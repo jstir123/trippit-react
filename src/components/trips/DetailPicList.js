@@ -97,11 +97,14 @@ const DetailPicList = ({trip, tripId}) => {
                                     onClick={() => handleClick(pic)}
                                     className={classes.pic}
                                 />
-                                <DeleteTripPhotoBtn
-                                    uid={trip && trip.uid}
-                                    tripId={tripId}
-                                    pic={pic}
-                                />
+                                {auth.uid === (trip && trip.uid)
+                                    ? (
+                                        <DeleteTripPhotoBtn
+                                            uid={trip && trip.uid}
+                                            tripId={tripId}
+                                            pic={pic}
+                                        />
+                                    ) : null}
                             </GridListTile>
                         ))}
                     </GridList>
