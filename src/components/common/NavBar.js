@@ -106,6 +106,13 @@ const NavBar = ({auth, profile, signOut}) => {
                     </Typography>
                   </Button>
                 </Link>
+                <Link to={`/users`} className={classes.link}>
+                  <Button color='inherit' style={{ textTransform: 'none' }}>
+                    <Typography variant='body1'>
+                      Users
+                    </Typography>
+                  </Button>
+                </Link>
               </div>
             ) : null}
           <Link to='/' className={classes.link}>
@@ -114,7 +121,7 @@ const NavBar = ({auth, profile, signOut}) => {
             </Typography>
           </Link>
           {auth.uid ? (
-            <div className={classes.root}>
+            <div className={classes.menuText}>
               <Typography variant="body1">
                 {profile && profile.firstName
                 ? `Hi, ${profile.firstName}`

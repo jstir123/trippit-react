@@ -53,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
       background: theme.palette.background.paper,
       color: theme.palette.grey[400],
     },
+    '& 	.MuiSpeedDialAction-fab': {
+      boxShadow: '0 1px 10px 0 rgba(0,0,0,.12)',
+    },
   },
   bioGrid: {
     marginTop: theme.spacing(2),

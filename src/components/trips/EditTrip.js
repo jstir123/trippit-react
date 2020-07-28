@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import moment from 'moment';
 import MomentUtils from '@date-io/moment';
+
 import {updateTrip} from '../../store/actions/tripActions';
 
 import Button from '@material-ui/core/Button';
