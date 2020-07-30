@@ -4,6 +4,13 @@ html, body, .App, #root {
   background-color: #ffffff;
 }
 
+.page {
+  animation: fadein .5s;
+  -moz-animation: fadein .5s; /* Firefox */
+  -webkit-animation: fadein .5s; /* Safari and Chrome */
+  -o-animation: fadein .5s; /* Opera */
+}
+
 /* .App{
   display: flex;
   flex-flow: column;
@@ -33,6 +40,39 @@ html, body, .App, #root {
   -webkit-box-shadow: inset 0 1px 10px 0 rgba(0,0,0,.20);
   -moz-box-shadow: inset 0 1px 10px 0 rgba(0,0,0,.20);
   box-shadow: inset 0 1px 10px 0 rgba(0,0,0,.20);
+}
+
+@keyframes fadein {
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-moz-keyframes fadein { /* Firefox */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-o-keyframes fadein { /* Opera */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity: 1;
+  }
 }
 
 @media (max-width: 900px) {

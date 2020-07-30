@@ -39,26 +39,28 @@ const UserList = ({users}) => {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
-            <Typography variant='h5' className={classes.header}>Users</Typography>
-            {users && users.map(user => (
-                <List key={user.id} component='nav' aria-label='user-list'>
-                    <Link to={`/profile/${user.id}`} className={classes.link}>
-                        <ListItem button>
-                            <ListItemAvatar>
-                                <Avatar
-                                    alt=''
-                                    src={user && user.profilePicURL}
+        <div className='page'>
+            <div className={classes.root}>
+                <Typography variant='h5' className={classes.header}>Users</Typography>
+                {users && users.map(user => (
+                    <List key={user.id} component='nav' aria-label='user-list'>
+                        <Link to={`/profile/${user.id}`} className={classes.link}>
+                            <ListItem button>
+                                <ListItemAvatar>
+                                    <Avatar
+                                        alt=''
+                                        src={user && user.profilePicURL}
+                                    />
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary={`${user && user.firstName} ${user && user.lastName}`}
                                 />
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary={`${user && user.firstName} ${user && user.lastName}`}
-                            />
-                        </ListItem>
-                    </Link>
-                    {/* <Divider /> */}
-                </List>
-            ))}
+                            </ListItem>
+                        </Link>
+                        {/* <Divider /> */}
+                    </List>
+                ))}
+            </div>
         </div>
     )
 };

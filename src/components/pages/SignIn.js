@@ -65,73 +65,75 @@ const SignIn = ({auth, authError, signIn}) => {
   if (auth.uid) return <Redirect to={`/profile/${auth.uid}`} />
 
   return (
-    <Container component='main' maxWidth='xs'>
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component='h1' variant='h5'>
-          Login
-        </Typography>
-        <form className={classes.form} onSubmit={handleSubmit} noValidate>
-          <TextField
-            variant='outlined'
-            margin='normal'
-            required
-            fullWidth
-            id='email'
-            label='Email Address'
-            name='email'
-            autoComplete='email'
-            autoFocus
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <TextField
-            variant='outlined'
-            margin='normal'
-            required
-            fullWidth
-            id='password'
-            label='Password'
-            name='password'
-            type='password'
-            autoComplete='current-password'
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {authError ? (
-            <Typography className={classes.errorText}>
-              {authError}
-            </Typography>
-          ) : (null)}
-          <Button
-            type='submit'
-            fullWidth
-            variant='contained'
-            color='primary'
-            className={classes.submit}>
+    <div className='page'>
+      <Container component='main' maxWidth='xs'>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component='h1' variant='h5'>
             Login
-          </Button>
-          <Grid container justify='center'>
-            <Grid item>
-              <Link to='/signup' className={classes.link}>
-                Don't have an account? Sign Up
-              </Link>
+          </Typography>
+          <form className={classes.form} onSubmit={handleSubmit} noValidate>
+            <TextField
+              variant='outlined'
+              margin='normal'
+              required
+              fullWidth
+              id='email'
+              label='Email Address'
+              name='email'
+              autoComplete='email'
+              autoFocus
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <TextField
+              variant='outlined'
+              margin='normal'
+              required
+              fullWidth
+              id='password'
+              label='Password'
+              name='password'
+              type='password'
+              autoComplete='current-password'
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {authError ? (
+              <Typography className={classes.errorText}>
+                {authError}
+              </Typography>
+            ) : (null)}
+            <Button
+              type='submit'
+              fullWidth
+              variant='contained'
+              color='primary'
+              className={classes.submit}>
+              Login
+            </Button>
+            <Grid container justify='center'>
+              <Grid item>
+                <Link to='/signup' className={classes.link}>
+                  Don't have an account? Sign Up
+                </Link>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Typography variant='body2' color='textSecondary' align='center'>
-          {'Copyright © '}
-          <Link to='/'>
-            Trippit.co
-          </Link>{' '}
-          {new Date().getFullYear()}
-          {'.'}
-        </Typography>
-      </Box>
-    </Container>
+          </form>
+        </div>
+        <Box mt={8}>
+          <Typography variant='body2' color='textSecondary' align='center'>
+            {'Copyright © '}
+            <Link to='/'>
+              Trippit.co
+            </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+          </Typography>
+        </Box>
+      </Container>
+    </div>
   );
 }
 

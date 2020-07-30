@@ -26,15 +26,17 @@ const TripDetail = ({auth, trip, itinerary, match}) => {
     if (auth.isEmpty) return <Redirect to='/login' />
 
     return (
-        isLoaded(trip) && tripMatch
-        ? (
-            <div className={classes.root}>
-                <DetailHeader trip={trip} tripId={tripId} />
-                <DetailPicList trip={trip} tripId={tripId} />
-                <Itinerary itinerary={itinerary} uid={trip && trip.uid} tripId={tripId} />
-            </div>
-        )
-        : <Spinner />
+        <div className='page'>
+            {isLoaded(trip) && tripMatch
+            ? (
+                <div className={classes.root}>
+                    <DetailHeader trip={trip} tripId={tripId} />
+                    <DetailPicList trip={trip} tripId={tripId} />
+                    <Itinerary itinerary={itinerary} uid={trip && trip.uid} tripId={tripId} />
+                </div>
+            )
+            : <Spinner />}
+        </div>
     )
 };
 

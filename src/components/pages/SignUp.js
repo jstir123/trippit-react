@@ -80,125 +80,127 @@ const SignUp = ({auth, authError, signUp}) => {
   if (auth.uid) return <Redirect to={`/profile/${auth.uid}`} />
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <form className={classes.form} onSubmit={handleSubmit} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                name="firstName"
-                autoComplete="fname"
-                autoFocus
-                onChange={(e) => setFirstName(e.target.value)}
-              />
+    <div className='page'>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <form className={classes.form} onSubmit={handleSubmit} noValidate>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  name="firstName"
+                  autoComplete="fname"
+                  autoFocus
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="lname"
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="password"
+                  label="Password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="confirmPassword"
+                  label="Confirm Password"
+                  name="confirmPassword"
+                  type="password"
+                  autoComplete="current-password"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-                onChange={(e) => setLastName(e.target.value)}
-              />
+            {authError ? (
+              <Typography className={classes.errorText}>
+                {authError}
+              </Typography>
+            ) : (null)}
+            {!passwordMatch ? (
+              <Typography className={classes.errorText}>
+                Password doesn't match
+              </Typography>
+            ) : (null)}
+            {!requiredFields ? (
+              <Typography className={classes.errorText}>
+                Please fill out all fields
+              </Typography>
+            ) : (null)}
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign Up
+            </Button>
+            <Grid container justify="center">
+              <Grid item>
+                <Link to="/login" className={classes.link}>
+                  Already have an account? Login
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="password"
-                label="Password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="confirmPassword"
-                label="Confirm Password"
-                name="confirmPassword"
-                type="password"
-                autoComplete="current-password"
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </Grid>
-          </Grid>
-          {authError ? (
-            <Typography className={classes.errorText}>
-              {authError}
-            </Typography>
-          ) : (null)}
-          {!passwordMatch ? (
-            <Typography className={classes.errorText}>
-              Password doesn't match
-            </Typography>
-          ) : (null)}
-          {!requiredFields ? (
-            <Typography className={classes.errorText}>
-              Please fill out all fields
-            </Typography>
-          ) : (null)}
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign Up
-          </Button>
-          <Grid container justify="center">
-            <Grid item>
-              <Link to="/login" className={classes.link}>
-                Already have an account? Login
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={5}>
-        <Typography variant='body2' color='textSecondary' align='center'>
-          {'Copyright © '}
-          <Link to='/'>
-            Trippit.co
-          </Link>{' '}
-          {new Date().getFullYear()}
-          {'.'}
-        </Typography>
-      </Box>
-    </Container>
+          </form>
+        </div>
+        <Box mt={5}>
+          <Typography variant='body2' color='textSecondary' align='center'>
+            {'Copyright © '}
+            <Link to='/'>
+              Trippit.co
+            </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+          </Typography>
+        </Box>
+      </Container>
+    </div>
   );
 }
 
