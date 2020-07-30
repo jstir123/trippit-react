@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {firestoreConnect, isLoaded, isEmpty} from 'react-redux-firebase';
+import {firestoreConnect, isLoaded} from 'react-redux-firebase';
 import {compose} from 'redux';
 import {Redirect} from 'react-router-dom';
 
@@ -12,8 +12,8 @@ import {getTripName} from '../../utils/utils';
 
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -68,16 +68,9 @@ const Profile = ({auth, trips, user, match}) => {
 
         <SearchBar setSearchInput={setSearchInput} />
 
-
-        {isEmpty(trips)
-          ? (
-            <Typography variant='body2' style={{marginTop: '25px', fontWeight: 'lighter'}}>
-              This user hasn't logged any trips yet!
-            </Typography>
-          )
-          : isLoaded(trips) && ((trips[0] && trips[0].uid) === match.params.uid)
-            ? <TripList trips={filteredTrips} />
-            : <CircularProgress color='primary' style={{marginTop: '75px'}} />}
+        {isLoaded(trips) && ((trips[0] && trips[0].uid) === match.params.uid)
+          ? <TripList trips={filteredTrips} />
+          : <CircularProgress color='primary' style={{marginTop: '75px'}} />}
 
       </Paper>
     </>

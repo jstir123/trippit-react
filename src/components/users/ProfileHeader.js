@@ -9,11 +9,14 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
-import SpeedDial from '@material-ui/lab/SpeedDial';
-import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
+import IconButton from '@material-ui/core/IconButton';
+// import SpeedDial from '@material-ui/lab/SpeedDial';
+// import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import EditIcon from '@material-ui/icons/Edit';
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import Skeleton from '@material-ui/lab/Skeleton';
 import {makeStyles} from '@material-ui/core/styles';
 
@@ -45,17 +48,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     marginTop: theme.spacing(0),
     marginBottom: theme.spacing(0),
-  },
-  editBtn: {
-    height: 25,
-    '& .MuiSpeedDial-fab': {
-      boxShadow: theme.shadows[0],
-      background: theme.palette.background.paper,
-      color: theme.palette.grey[400],
-    },
-    '& 	.MuiSpeedDialAction-fab': {
-      boxShadow: '0 1px 10px 0 rgba(0,0,0,.12)',
-    },
   },
   bioGrid: {
     marginTop: theme.spacing(2),
@@ -92,7 +84,6 @@ const ProfileHeader = ({auth, user, tripCount, isLoaded, uid}) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
-  const [speedDialOpen, setSpeedDialOpen] = useState(false);
   const [editProfPicOpen, setEditProfPicOpen] = useState(false);
   const [imgViewerOpen, setImgViewerOpen] = useState(false);
   const displayData = isLoaded && (uid === (user && user.id))
@@ -140,38 +131,32 @@ const ProfileHeader = ({auth, user, tripCount, isLoaded, uid}) => {
                 </Grid>
                 {auth.uid === uid
                   ? (
-                    <Grid item xs={1}>
-                      <SpeedDial
-                        ariaLabel='Edit Profile'
-                        className={classes.editBtn}
-                        icon={<EditIcon />}
-                        onClose={() => setSpeedDialOpen(false)}
-                        onOpen={() => setSpeedDialOpen(true)}
-                        open={speedDialOpen}
-                        direction='up'
-                      >
-                        <SpeedDialAction
-                          icon={<EditIcon />}
-                          tooltipTitle='Edit Profile Info'
-                          onClick={() => setEditOpen(true)}
+                    <>
+                      <Grid item xs={1}>
+                        <Tooltip title='Edit Profile Info' placement='top'>
+                          <IconButton onClick={() => setEditOpen(true)}>
+                            <EditIcon fontSize='small' />
+                          </IconButton>
+                        </Tooltip>
+                        <EditProfile
+                          user={user}
+                          open={editOpen}
+                          handleClose={() => setEditOpen(false)}
                         />
-                        <SpeedDialAction
-                          icon={<EditIcon />}
-                          tooltipTitle='Edit Profile Picture'
-                          onClick={() => setEditProfPicOpen(true)}
+                      </Grid>
+                      <Grid item xs={1}>
+                        <Tooltip title='Edit Profile Picture' placement='top'>
+                          <IconButton onClick={() => setEditProfPicOpen(true)}>
+                            <PhotoCameraIcon fontSize='small' />
+                          </IconButton>
+                        </Tooltip>
+                        <EditProfPic
+                          uid={user && user.id}
+                          open={editProfPicOpen}
+                          handleClose={() => setEditProfPicOpen(false)}
                         />
-                      </SpeedDial>
-                      <EditProfile
-                        user={user}
-                        open={editOpen}
-                        handleClose={() => setEditOpen(false)}
-                      />
-                      <EditProfPic
-                        uid={user && user.id}
-                        open={editProfPicOpen}
-                        handleClose={() => setEditProfPicOpen(false)}
-                      />
-                    </Grid>
+                      </Grid>
+                    </>
                   ) : null}
               </Grid>
               <Typography variant='body2' className={classes.lightText}>
