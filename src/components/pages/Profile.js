@@ -70,7 +70,9 @@ const Profile = ({auth, trips, user, match, style}) => {
 
         {isLoaded(trips) && ((trips[0] && trips[0].uid) === match.params.uid)
           ? <TripList trips={filteredTrips} />
-          : <CircularProgress color='primary' style={{marginTop: '75px'}} />}
+          : trips && trips.length === 0
+            ? <TripList trips={filteredTrips} />
+            : <CircularProgress color='primary' style={{marginTop: '75px'}} />}
 
       </Paper>
       

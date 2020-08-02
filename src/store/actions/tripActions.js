@@ -9,8 +9,8 @@ export const addTrip = (trip) => {
       city: trip.city,
       state: trip.state,
       country: trip.country,
-      startDate: new Date(trip.startDate) || null,
-      endDate: new Date(trip.endDate) || null,
+      startDate: trip.startDate === null ? null : new Date(trip.startDate),
+      endDate: trip.endDate === null ? null : new Date(trip.endDate),
       description: trip.description,
       coords: trip.coords ? new firestore.GeoPoint(trip.coords.lat, trip.coords.lng) : false,
       uid: state.firebase.auth.uid,
@@ -33,8 +33,11 @@ export const addTrip = (trip) => {
 };
 
 export const deleteTrip = (tripId) => {
-  return (dispatch, getState, {getFirestore}) => {
+  return (dispatch, getState, {getFirestore, getFirebase}) => {
     const firestore = getFirestore();
+    const firebase = getFirebase();
+    const state = getState();
+    let uid = state.firebase.auth.uid;
 
     firestore.collection('trips').doc(tripId).delete()
       .then(() => {
@@ -45,6 +48,30 @@ export const deleteTrip = (tripId) => {
         dispatch({
           type: 'DELETE_TRIP_ERROR',
           error: error
+        })
+      })
+
+    firestore.collection('itinerary').where('tripId','==',tripId).get()
+      .then((querySnapshot) => {
+        const batch = firestore.batch();
+
+        querySnapshot.forEach((doc) => {
+          batch.delete(doc.ref);
+        });
+
+        return batch.commit();
+      }).then(() => {
+        console.log('Itinerary items deleted')
+    });
+
+    firebase.storage().ref().child(`${uid}/trip-pictures/${tripId}`).listAll()
+      .then((resp) => {
+        resp.items.forEach((item) => {
+          item.delete().then(() => {
+            console.log(`${item.name} deleted`);
+          }).catch((error) => {
+            console.log(`${item.name} could not be deleted.`, error);
+          })
         })
       })
   }

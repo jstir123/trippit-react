@@ -35,10 +35,10 @@ const EditTrip = ({trip, tripName, editOpen, handleClose, updateTrip}) => {
     const classes = useStyles();
     const tripId = trip && trip.id
     const [startDate, setStartDate] = useState(
-        trip && trip.startDate ? moment(trip.startDate.toDate()).format('MM/DD/YYYY') : ''
+        trip && trip.startDate ? moment(trip.startDate.toDate()).format('MM/DD/YYYY') : null
     );
     const [endDate, setEndDate] = useState(
-        trip && trip.endDate ? moment(trip.endDate.toDate()).format('MM/DD/YYYY') : ''
+        trip && trip.endDate ? moment(trip.endDate.toDate()).format('MM/DD/YYYY') : null
     );
     const [description, setDescription] = useState(trip.description || '');
 
@@ -46,15 +46,15 @@ const EditTrip = ({trip, tripName, editOpen, handleClose, updateTrip}) => {
         let updatedFields ={};
 
         if (startDate !== (
-            trip && trip.startDate ? moment(trip.startDate.toDate()).format('MM/DD/YYYY') : ''
+            trip && trip.startDate ? moment(trip.startDate.toDate()).format('MM/DD/YYYY') : null
         )) {
-            updatedFields['startDate'] = new Date(startDate);
+            updatedFields['startDate'] = startDate === null ? null : new Date(startDate);
         }
 
         if (endDate !== (
-            trip && trip.endDate ? moment(trip.endDate.toDate()).format('MM/DD/YYYY') : ''
+            trip && trip.endDate ? moment(trip.endDate.toDate()).format('MM/DD/YYYY') : null
         )) {
-            updatedFields['endDate'] = new Date(endDate);
+            updatedFields['endDate'] = endDate === null ? null : new Date(endDate);
         }
 
         if (description !== (trip.description || '')) {

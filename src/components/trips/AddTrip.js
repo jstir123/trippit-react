@@ -54,6 +54,8 @@ const AddTrip = ({open, handleClose, addTrip}) => {
         let newTrip = {location, city, state, country,
                        startDate, endDate, description, coords}
 
+        console.log(newTrip);
+
         if (location === '') {
             setLocationBlank(true);
             return null;

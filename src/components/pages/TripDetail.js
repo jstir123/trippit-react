@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {firestoreConnect, isLoaded} from 'react-redux-firebase';
+import {firestoreConnect, isLoaded, isEmpty} from 'react-redux-firebase';
 import {compose} from 'redux';
 import {Redirect} from 'react-router-dom';
 
@@ -9,6 +9,7 @@ import DetailHeader from '../trips/DetailHeader';
 import DetailPicList from '../trips/DetailPicList';
 import Itinerary from '../trips/Itinerary';
 
+import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 
 
@@ -35,7 +36,13 @@ const TripDetail = ({auth, trip, itinerary, match}) => {
                     <Itinerary itinerary={itinerary} uid={trip && trip.uid} tripId={tripId} />
                 </div>
             )
-            : <Spinner />}
+            : isEmpty(trip)
+                ? (
+                    <Typography variant='body2' style={{margin: '25px', fontWeight: 'lighter'}}>
+                        We can't find this trip.
+                    </Typography>
+                )
+                : <Spinner />}
         </div>
     )
 };
