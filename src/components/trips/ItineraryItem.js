@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
+
+import RemoveItineraryItem from './RemoveItineraryItem';
+
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
-import RemoveItineraryItem from './RemoveItineraryItem';
 import {makeStyles} from '@material-ui/core/styles';
+
 
 const useStyles = makeStyles((theme) => ({
     item: {

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
+
 import {updateProfile} from '../../store/actions/authActions';
 
 import Button from '@material-ui/core/Button';

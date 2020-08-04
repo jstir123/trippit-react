@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import TextField from '@material-ui/core/TextField';
 import places from 'places.js';
+
+import TextField from '@material-ui/core/TextField';
+
 
 const PlacesSearch = (props) => {
     const {type, setLocation, setCity, setState, setCountry, setCoords, error} = props;

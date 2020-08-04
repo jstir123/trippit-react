@@ -12,8 +12,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-// import SpeedDial from '@material-ui/lab/SpeedDial';
-// import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import EditIcon from '@material-ui/icons/Edit';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';

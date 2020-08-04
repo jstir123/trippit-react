@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import rootReducer from './store/reducers/rootReducer';
 import firebase from 'firebase/app';
 import thunk from 'redux-thunk';
 import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import {ReactReduxFirebaseProvider, getFirebase} from 'react-redux-firebase';
 import {createFirestoreInstance, getFirestore, reduxFirestore} from 'redux-firestore';
+
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+import rootReducer from './store/reducers/rootReducer';
 import {firebaseConfig, rrfConfig} from './config/firebaseConfig';
+
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';

@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
+
+import RemoveTripPhoto from './RemoveTripPhoto';
+
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import RemoveTripPhoto from './RemoveTripPhoto';
 import {makeStyles} from '@material-ui/core/styles';
+
 
 const useStyles = makeStyles((theme) => ({
     titleBar: {

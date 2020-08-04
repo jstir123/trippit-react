@@ -1,6 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+
+import {signOut} from '../../store/actions/authActions';
+
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -12,7 +15,7 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import LockIcon from '@material-ui/icons/Lock';
 import {makeStyles} from '@material-ui/core/styles';
-import {signOut} from '../../store/actions/authActions';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {

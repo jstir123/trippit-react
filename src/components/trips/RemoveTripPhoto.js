@@ -2,13 +2,16 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {firebaseConnect} from 'react-redux-firebase';
+
+import {deleteTripPic} from '../../store/actions/tripActions';
+
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import {deleteTripPic} from '../../store/actions/tripActions';
+
 
 const RemoveTripPhoto = ({tripId, uid, pic, removeOpen, handleClose, deleteTripPic, firebase}) => {
 

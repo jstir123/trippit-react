@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import mapboxgl from 'mapbox-gl';
+
 import {getTripName} from '../../utils/utils';
+
 
 class MapContainer extends Component {
 

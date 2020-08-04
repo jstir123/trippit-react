@@ -2,6 +2,9 @@ import React, {useState, useRef} from 'react';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {firebaseConnect} from 'react-redux-firebase';
+
+import {addTripPics} from '../../store/actions/tripActions';
+
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -11,7 +14,7 @@ import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
-import {addTripPics} from '../../store/actions/tripActions';
+
 
 const useStyles = makeStyles((theme) => ({
     form: {
