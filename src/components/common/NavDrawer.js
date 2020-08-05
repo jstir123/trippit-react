@@ -14,6 +14,7 @@ import Divider from '@material-ui/core/Divider';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import LockIcon from '@material-ui/icons/Lock';
+import PeopleIcon from '@material-ui/icons/People';
 import {makeStyles} from '@material-ui/core/styles';
 
 
@@ -54,6 +55,17 @@ const NavDrawer = ({open, handleClose, auth, signOut, profile}) => {
                       src={profile.profilePicURL}/>
                   </ListItemAvatar>
                   <ListItemText primary='My Trips' />
+                </ListItem>
+                <Divider />
+              </Link>
+              <Link to={`/users`} className={classes.link}>
+                <ListItem button component="nav">
+                  <ListItemAvatar>
+                    <Avatar className={classes.secondaryBackground}>
+                      <PeopleIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary='Users' />
                 </ListItem>
                 <Divider />
               </Link>

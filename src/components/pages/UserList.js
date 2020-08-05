@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 5,
         padding: theme.spacing(2),
     },
+    padding: {
+        padding: theme.spacing(2),
+    },
     header: {
         fontWeight: theme.typography.fontWeightBold,
         marginBottom: theme.spacing(1),
@@ -40,26 +43,28 @@ const UserList = ({users}) => {
 
     return (
         <div className='page'>
-            <div className={classes.root}>
-                <Typography variant='h5' className={classes.header}>Users</Typography>
-                {users && users.map(user => (
-                    <List key={user.id} component='nav' aria-label='user-list'>
-                        <Link to={`/profile/${user.id}`} className={classes.link}>
-                            <ListItem button>
-                                <ListItemAvatar>
-                                    <Avatar
-                                        alt=''
-                                        src={user && user.profilePicURL}
+            <div className={classes.padding}>
+                <div className={classes.root}>
+                    <Typography variant='h5' className={classes.header}>Users</Typography>
+                    {users && users.map(user => (
+                        <List key={user.id} component='nav' aria-label='user-list'>
+                            <Link to={`/profile/${user.id}`} className={classes.link}>
+                                <ListItem button>
+                                    <ListItemAvatar>
+                                        <Avatar
+                                            alt=''
+                                            src={user && user.profilePicURL}
+                                        />
+                                    </ListItemAvatar>
+                                    <ListItemText
+                                        primary={`${user && user.firstName} ${user && user.lastName}`}
                                     />
-                                </ListItemAvatar>
-                                <ListItemText
-                                    primary={`${user && user.firstName} ${user && user.lastName}`}
-                                />
-                            </ListItem>
-                        </Link>
-                        {/* <Divider /> */}
-                    </List>
-                ))}
+                                </ListItem>
+                            </Link>
+                            {/* <Divider /> */}
+                        </List>
+                    ))}
+                </div>
             </div>
         </div>
     )
