@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {firestoreConnect, isLoaded} from 'react-redux-firebase';
+import {firestoreConnect, isLoaded, isEmpty} from 'react-redux-firebase';
 import {compose} from 'redux';
 import {Redirect} from 'react-router-dom';
 
@@ -58,7 +58,6 @@ const Profile = ({auth, trips, user, match, style}) => {
       <MapContainer trips={filteredTrips} />
 
       <Paper className={classes.root} elevation={0}>
-
         <ProfileHeader
           auth={auth}
           user={user && user[0]}
@@ -71,10 +70,9 @@ const Profile = ({auth, trips, user, match, style}) => {
 
         {isLoaded(trips) && ((trips[0] && trips[0].uid) === match.params.uid)
           ? <TripList trips={filteredTrips} />
-          : trips && trips.length === 0
+          : isLoaded(trips) && isEmpty(trips)
             ? <TripList trips={filteredTrips} />
             : <CircularProgress color='primary' style={{marginTop: '75px'}} />}
-
       </Paper>
       
     </div>

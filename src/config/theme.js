@@ -1,6 +1,6 @@
-import {createMuiTheme} from '@material-ui/core/styles';
+import {createMuiTheme, responsiveFontSizes} from '@material-ui/core/styles';
 
-export const theme = createMuiTheme({
+export let theme = createMuiTheme({
   palette: {
     primary: {
       main: '#8AE2FF',
@@ -14,3 +14,5 @@ export const theme = createMuiTheme({
     tonalOffset: 0.2,
   },
 });
+
+theme = responsiveFontSizes(theme);

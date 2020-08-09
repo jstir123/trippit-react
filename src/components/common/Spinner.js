@@ -16,7 +16,7 @@ const Spinner = () => {
     const classes = useStyles();
 
     return (
-        <Grid container direction="row" justify="center" alignItems="center" className={classes.root}>
+        <Grid container direction='row' justify='center' alignItems='center' className={classes.root}>
             <CircularProgress />
         </Grid>
     )

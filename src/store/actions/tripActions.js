@@ -99,10 +99,12 @@ export const updateTrip = (tripId, updatedFields) => {
 
 export const addItineraryItem = (item) => {
   return (dispatch, getState, {getFirestore}) => {
-    const firestore = getFirestore()
+    const firestore = getFirestore();
+    const state = getState();
 
     firestore.collection('itinerary').add({
-      ...item
+      ...item,
+      uid: state.firebase.auth.uid
     }).then(() => {
       dispatch({
         type: 'ADD_ITINERARY_ITEM',

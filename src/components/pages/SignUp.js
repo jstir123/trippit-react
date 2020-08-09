@@ -84,77 +84,77 @@ const SignUp = ({auth, authError, signUp}) => {
 
   return (
     <div className='page'>
-      <Container component="main" maxWidth="xs">
+      <Container component='main' maxWidth='xs'>
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component='h1' variant='h5'>
             Sign up
           </Typography>
           <form className={classes.form} onSubmit={handleSubmit} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  variant="outlined"
+                  variant='outlined'
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
-                  name="firstName"
-                  autoComplete="fname"
+                  id='firstName'
+                  label='First Name'
+                  name='firstName'
+                  autoComplete='fname'
                   autoFocus
                   onChange={(e) => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  variant="outlined"
+                  variant='outlined'
                   required
                   fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="lname"
+                  id='lastName'
+                  label='Last Name'
+                  name='lastName'
+                  autoComplete='lname'
                   onChange={(e) => setLastName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  variant="outlined"
+                  variant='outlined'
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  id='email'
+                  label='Email Address'
+                  name='email'
+                  autoComplete='email'
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  variant="outlined"
+                  variant='outlined'
                   required
                   fullWidth
-                  id="password"
-                  label="Password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
+                  id='password'
+                  label='Password'
+                  name='password'
+                  type='password'
+                  autoComplete='current-password'
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  variant="outlined"
+                  variant='outlined'
                   required
                   fullWidth
-                  id="confirmPassword"
-                  label="Confirm Password"
-                  name="confirmPassword"
-                  type="password"
-                  autoComplete="current-password"
+                  id='confirmPassword'
+                  label='Confirm Password'
+                  name='confirmPassword'
+                  type='password'
+                  autoComplete='current-password'
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </Grid>
@@ -175,17 +175,17 @@ const SignUp = ({auth, authError, signUp}) => {
               </Typography>
             ) : (null)}
             <Button
-              type="submit"
+              type='submit'
               fullWidth
-              variant="contained"
-              color="primary"
+              variant='contained'
+              color='primary'
               className={classes.submit}
             >
               Sign Up
             </Button>
-            <Grid container justify="center">
+            <Grid container justify='center'>
               <Grid item>
-                <Link to="/login" className={classes.link}>
+                <Link to='/login' className={classes.link}>
                   Already have an account? Login
                 </Link>
               </Grid>

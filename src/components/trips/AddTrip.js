@@ -90,14 +90,14 @@ const AddTrip = ({open, handleClose, addTrip}) => {
         <Dialog
             open={open}
             onClose={handleClose}
-            aria-labelledby="form-dialog-title"
+            aria-labelledby='form-dialog-title'
             onEntered={() => document.querySelector('#location').focus()}
         >
-            <DialogTitle id="form-dialog-title">Add a Trip</DialogTitle>
+            <DialogTitle id='form-dialog-title'>Add a Trip</DialogTitle>
             <DialogContent>
                 <form className={classes.form} noValidate autoComplete='off'>
                     <Grid container spacing={2}>
-                        <Grid item xs={3}>
+                        <Grid item xs={12} sm={3}>
                             <FormControl variant='outlined' fullWidth>
                                 <InputLabel id='typeLabel'>
                                     Location Type
@@ -179,10 +179,10 @@ const AddTrip = ({open, handleClose, addTrip}) => {
                 </form>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose} color="primary">
+                <Button onClick={handleClose} color='primary'>
                     Cancel
                 </Button>
-                <Button onClick={handleSubmit} on color="primary">
+                <Button onClick={handleSubmit} on color='primary'>
                     Submit
                 </Button>
             </DialogActions>

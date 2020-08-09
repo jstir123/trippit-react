@@ -18,11 +18,13 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     marginTop: 75,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
+  toolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   title: {
-    flexGrow: 1,
+    // flexGrow: 1,
   },
   navbar: {
     color: theme.palette.text.primary,
@@ -33,19 +35,15 @@ const useStyles = makeStyles((theme) => ({
 
 const AuthIsLoaded = ({children}) => {
   const classes = useStyles();
-  const state = useSelector(state => state);
-  console.log(state);
   const auth = useSelector(state => state.firebase.auth);
+  
   if (!isLoaded(auth)) {
     return (
       <>
         <div className={classes.nav}>
-          <AppBar position="sticky" className={classes.navbar}>
-            <Toolbar>
-              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h5" className={classes.title}>
+          <AppBar position='sticky' className={classes.navbar}>
+            <Toolbar className={classes.toolbar}>
+              <Typography variant='h4' className={classes.title}>
                 Trippit
               </Typography>
             </Toolbar>

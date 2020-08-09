@@ -11,6 +11,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {makeStyles} from '@material-ui/core/styles';
 
 
@@ -53,6 +54,7 @@ const DetailPicList = ({trip, tripId}) => {
     const [open, setOpen] = useState(false);
     const [addOpen, setAddOpen] = useState(false);
     const [imgIndex, setImgIndex] = useState(0);
+    let xsScreen = useMediaQuery(theme => theme.breakpoints.only('xs'));
     const pics = trip && trip.pictures;
     let images = [];
 
@@ -91,7 +93,7 @@ const DetailPicList = ({trip, tripId}) => {
                 <>
                     <GridList className={classes.gridList} cols={3}>
                         {pics.map((pic) => (
-                            <GridListTile key={pic.url} cols={1}>
+                            <GridListTile key={pic.url} cols={xsScreen ? 3 : 1}>
                                 <img
                                     src={pic.url}
                                     alt=''

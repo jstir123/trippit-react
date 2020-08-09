@@ -164,8 +164,8 @@ const ProfileHeader = ({auth, user, tripCount, isLoaded, uid}) => {
           )
           : (
             <>
-              <Skeleton variant="text" animation="wave" />
-              <Skeleton variant="text" animation="wave" />
+              <Skeleton variant='text' animation='wave' />
+              <Skeleton variant='text' animation='wave' />
             </>
           )}
         </Grid>
@@ -178,7 +178,7 @@ const ProfileHeader = ({auth, user, tripCount, isLoaded, uid}) => {
               {user && user.bio}
             </Typography>
           )
-          : <Skeleton variant="rect" animation="wave" height={40} />}
+          : <Skeleton variant='rect' animation='wave' height={40} />}
         </Grid>
       </Grid>
       <Grid container justify='center'>

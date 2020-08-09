@@ -72,7 +72,7 @@ const AddItineraryItem = ({tripId, addOpen, handleClose, addItineraryItem}) => {
                 <DialogTitle id='add-item'>Add an Itinerary Item</DialogTitle>
                 <DialogContent>
                     <Grid container spacing={2}>
-                        <Grid item xs={6}>
+                        <Grid item xs={12} sm={6}>
                             <FormControl variant='outlined' fullWidth>
                                 <InputLabel id='type-label'>
                                     Place Type
@@ -94,7 +94,7 @@ const AddItineraryItem = ({tripId, addOpen, handleClose, addItineraryItem}) => {
                                 </Select>
                             </FormControl>
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={12} sm={6}>
                             <FormControl variant='outlined' fullWidth>
                                 <InputLabel id='recommended-label'>
                                     Recommended

@@ -78,14 +78,14 @@ const NavBar = ({auth, profile, signOut}) => {
 
   return (
     <div>
-      <AppBar position="fixed" className={classes.navbar}>
+      <AppBar position='fixed' className={classes.navbar}>
         <Toolbar className={classes.root}>
           <IconButton
-            edge="start"
+            edge='start'
             className={classes.menuButton}
             onClick={handleToggle}
-            color="inherit"
-            aria-label="menu"
+            color='inherit'
+            aria-label='menu'
             >
             <MenuIcon />
           </IconButton>
@@ -106,7 +106,7 @@ const NavBar = ({auth, profile, signOut}) => {
                     </Typography>
                   </Button>
                 </Link>
-                <Link to={`/users`} className={classes.link}>
+                <Link to='/users' className={classes.link}>
                   <Button color='inherit' style={{ textTransform: 'none' }}>
                     <Typography variant='body1'>
                       Users
@@ -114,7 +114,24 @@ const NavBar = ({auth, profile, signOut}) => {
                   </Button>
                 </Link>
               </div>
-            ) : null}
+            ) : (
+              <div className={classes.menuText}>
+                <Link to='/login' className={classes.link}>
+                  <Button color='inherit' style={{ textTransform: 'none' }}>
+                    <Typography variant='body1'>
+                      Login
+                    </Typography>
+                  </Button>
+                </Link>
+                <Link to='/signup' className={classes.link}>
+                  <Button color='inherit' style={{ textTransform: 'none' }}>
+                    <Typography variant='body1'>
+                      Sign Up
+                    </Typography>
+                  </Button>
+                </Link>
+              </div>
+            )}
           <Link to='/' className={classes.link}>
             <Typography variant='h4' className={classes.title}>
               Trippit
@@ -122,9 +139,9 @@ const NavBar = ({auth, profile, signOut}) => {
           </Link>
           {auth.uid ? (
             <div className={classes.menuText}>
-              <Typography variant="body1">
+              <Typography variant='body1'>
                 {profile && profile.firstName
-                ? `Hi, ${profile.firstName}`
+                ? `Hi ${profile.firstName}!`
                 : null}
               </Typography>
               <Button

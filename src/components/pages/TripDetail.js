@@ -30,20 +30,20 @@ const TripDetail = ({auth, trip, itinerary, match}) => {
     return (
         <div className='page'>
             {isLoaded(trip) && tripMatch
-            ? (
-                <div className={classes.root}>
-                    <DetailHeader trip={trip} tripId={tripId} />
-                    <DetailPicList trip={trip} tripId={tripId} />
-                    <Itinerary itinerary={itinerary} uid={trip && trip.uid} tripId={tripId} />
-                </div>
-            )
-            : isEmpty(trip)
                 ? (
-                    <Typography variant='body2' style={{margin: '25px', fontWeight: 'lighter'}}>
-                        We can't find this trip.
-                    </Typography>
+                    <div className={classes.root}>
+                        <DetailHeader trip={trip} tripId={tripId} />
+                        <DetailPicList trip={trip} tripId={tripId} />
+                        <Itinerary itinerary={itinerary} uid={trip && trip.uid} tripId={tripId} />
+                    </div>
                 )
-                : <Spinner />}
+                : isLoaded(trip) && isEmpty(trip)
+                    ? (
+                        <Typography variant='body2' style={{margin: '25px', fontWeight: 'lighter'}}>
+                            We can't find this trip.
+                        </Typography>
+                    )
+                    : <Spinner />}
         </div>
     )
 };

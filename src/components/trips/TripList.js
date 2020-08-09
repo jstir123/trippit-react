@@ -22,7 +22,7 @@ const TripList = ({trips}) => {
     } else {
         return (
             <Typography variant='body2' style={{marginTop: '25px', fontWeight: 'lighter'}}>
-                This user hasn't logged any trips yet!
+                We couldn't find any trips!
             </Typography>
         )
     } 

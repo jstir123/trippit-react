@@ -48,7 +48,7 @@ const NavDrawer = ({open, handleClose, auth, signOut, profile}) => {
           {auth.uid ? (
             <>
               <Link to={`/profile/${auth.uid}`} className={classes.link}>
-                <ListItem button component="nav">
+                <ListItem button component='nav'>
                   <ListItemAvatar>
                     <Avatar
                       alt=''
@@ -59,7 +59,7 @@ const NavDrawer = ({open, handleClose, auth, signOut, profile}) => {
                 <Divider />
               </Link>
               <Link to={`/users`} className={classes.link}>
-                <ListItem button component="nav">
+                <ListItem button component='nav'>
                   <ListItemAvatar>
                     <Avatar className={classes.secondaryBackground}>
                       <PeopleIcon />
@@ -69,7 +69,7 @@ const NavDrawer = ({open, handleClose, auth, signOut, profile}) => {
                 </ListItem>
                 <Divider />
               </Link>
-              <ListItem button component="nav" onClick={signOut}>
+              <ListItem button component='nav' onClick={signOut}>
                 <ListItemAvatar>
                   <Avatar className={classes.primaryBackground}>
                     <LockIcon />
@@ -82,7 +82,7 @@ const NavDrawer = ({open, handleClose, auth, signOut, profile}) => {
           ) : (
             <>
               <Link to='/login' className={classes.link}>
-                <ListItem button component="nav">
+                <ListItem button component='nav'>
                   <ListItemAvatar>
                     <Avatar className={classes.primaryBackground}>
                       <LockOpenIcon />
@@ -93,7 +93,7 @@ const NavDrawer = ({open, handleClose, auth, signOut, profile}) => {
                 <Divider />
               </Link>
               <Link to='/signup' className={classes.link}>
-                <ListItem button component="nav">
+                <ListItem button component='nav'>
                   <ListItemAvatar>
                     <Avatar className={classes.secondaryBackground}>
                       <PersonAddIcon />

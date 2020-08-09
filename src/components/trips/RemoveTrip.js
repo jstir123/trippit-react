@@ -32,10 +32,10 @@ const RemoveTrip = ({tripID, tripName, removeOpen, handleClose, deleteTrip}) => 
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose} color="primary" autoFocus>
+                <Button onClick={handleClose} color='primary' autoFocus>
                     Cancel
                 </Button>
-                <Button onClick={handleDelete} color="primary">
+                <Button onClick={handleDelete} color='primary'>
                     Remove
                 </Button>
             </DialogActions>

@@ -63,21 +63,21 @@ const TripCard = ({trip}) => {
                     ? <CardMedia className={classes.tripPic} image={trip.pictures[0] && trip.pictures[0].url} />
                     : null}
                     <CardContent className={classes.tripContent}>
-                        <Typography variant="h5" component="h2">
+                        <Typography variant='h5' component='h2'>
                             {getTripName(trip)}
                         </Typography>
-                        <Typography gutterBottom variant="caption" component="p" className={classes.dateText}>
+                        <Typography gutterBottom variant='caption' component='p' className={classes.dateText}>
                             {trip && trip.startDate
-                            ? moment(trip.startDate.toDate()).format("MMM DD, YYYY")
+                            ? moment(trip.startDate.toDate()).format('MMM DD, YYYY')
                             : null}
                             {trip && trip.startDate && trip.endDate
                             ? ' - '
                             : null}
                             {trip && trip.endDate
-                            ? moment(trip.endDate.toDate()).format("MMM DD, YYYY")
+                            ? moment(trip.endDate.toDate()).format('MMM DD, YYYY')
                             : null}
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
+                        <Typography variant='body2' color='textSecondary' component='p'>
                             {trip && trip.description
                             ? trip.description
                             : null}
@@ -89,7 +89,7 @@ const TripCard = ({trip}) => {
                 {auth.uid === trip.uid
                     ? (
                         <>
-                            <Button size="small" color="primary" onClick={() => setEditOpen(true)}>
+                            <Button size='small' color='primary' onClick={() => setEditOpen(true)}>
                                 Edit
                             </Button>
                             <EditTrip
@@ -98,7 +98,7 @@ const TripCard = ({trip}) => {
                                 editOpen={editOpen}
                                 handleClose={() => setEditOpen(false)}
                             />
-                            <Button size="small" color="primary" onClick={() => setRemoveOpen(true)}>
+                            <Button size='small' color='primary' onClick={() => setRemoveOpen(true)}>
                                 Remove
                             </Button>
                             <RemoveTrip
