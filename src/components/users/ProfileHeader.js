@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
       height: 100,
       width: 100,
     }
-  }
+  },
 }));
 
 const ProfileHeader = ({auth, user, tripCount, isLoaded, uid}) => {

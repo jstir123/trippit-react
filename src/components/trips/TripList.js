@@ -12,7 +12,7 @@ const TripList = ({trips}) => {
             <Grid container alignItems='center' spacing={1} >
                 {trips.map(trip => {
                     return (
-                        <Grid item xs={12} xl={6} key={trip && trip.id} >
+                        <Grid item xs={12} key={trip && trip.id} >
                             <TripCard trip={trip} />
                         </Grid>
                     )

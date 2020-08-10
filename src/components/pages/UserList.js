@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {firestoreConnect} from 'react-redux-firebase';
 import {compose} from 'redux';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
@@ -37,8 +37,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const UserList = ({users}) => {
+const UserList = ({users, auth}) => {
     const classes = useStyles();
+
+    if (auth.isEmpty) return <Redirect to='/login' />
 
     return (
         <div className='page'>
@@ -70,6 +72,7 @@ const UserList = ({users}) => {
 };
 
 const mapStateToProps = (state) => ({
+    auth: state.firebase.auth,
     users: state.firestore.ordered.users,
 })
 

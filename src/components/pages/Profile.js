@@ -24,10 +24,15 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(2),
   },
   '@media (max-width: 900px)': {
-      root: {
-        width: '100%'
-      }
+    root: {
+      width: '100%'
     }
+  },
+  '@media (min-width: 901px)': {
+    root: {
+      maxWidth: 750,
+    }
+  }
 }));
 
 const Profile = ({auth, trips, user, match, style}) => {
